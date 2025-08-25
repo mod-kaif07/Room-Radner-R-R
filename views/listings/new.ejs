@@ -1,0 +1,91 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="container mt-4">
+  <h3>Create a New Listing</h3>
+
+  <form method="POST" action="/listing">
+    <!-- Title -->
+    <div class="mb-2">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="listing[title]"
+        placeholder="Enter title"
+        required
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="listing[description]"
+        placeholder="Enter description"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+
+    <!-- Image -->
+    <div class="mb-3">
+      <label for="image" class="form-label">Image URL/Link</label>
+      <input
+        type="text"
+        class="form-control"
+        id="image"
+        name="listing[image]"
+        placeholder="Enter image URL"
+        required
+      />
+    </div>
+
+    <!-- Price & Country (same row) -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          name="listing[price]"
+          placeholder="Enter price"
+          required
+        />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="country" class="form-label">Country</label>
+        <input
+          type="text"
+          class="form-control"
+          id="country"
+          name="listing[country]"
+          placeholder="Enter country"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input
+        type="text"
+        class="form-control"
+        id="location"
+        name="listing[location]"
+        placeholder="Enter location"
+        required
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-grid gap-2 col-6 mx-auto mb-4" >
+      <button class="btn btn-primary" type="submit"> Add </button>
+    </div>
+    <!-- <button type="" class="bbtn btn-primary btn-sm">Add</button> -->
+  </form>
+</div>

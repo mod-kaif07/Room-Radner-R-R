@@ -1,0 +1,95 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="container my-5">
+  <div class="card shadow-sm rounded-3">
+    <div class="card-body p-5">
+      <h2 class="text-center mb-4">Edit Your Listing</h2>
+      <form
+        action="/listing/<%= editable_data._id %>?_method=PUT"
+        method="POST"
+      >
+        <!-- Title -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="listing[title]"
+            value="<%= editable_data.title %>"
+            required
+          />
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            name="listing[description]"
+            rows="3"
+            required
+          >
+<%= editable_data.description %></textarea
+          >
+        </div>
+
+        <!-- Image Link -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Image Link</label>
+          <input
+            type="text"
+            class="form-control"
+            id="image"
+            name="listing[image]"
+            value="<%= editable_data.image %>"
+          />
+        </div>
+
+        <!-- Price & Country in same row -->
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="price"
+              name="listing[price]"
+              value="<%= editable_data.price %>"
+              required
+            />
+          </div>
+
+          <div class="col-12 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              id="country"
+              name="listing[country]"
+              value="<%= editable_data.country %>"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input
+            type="text"
+            class="form-control"
+            id="location"
+            name="listing[location]"
+            value="<%= editable_data.location %>"
+            required
+          />
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-dark w-100">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
