@@ -3,7 +3,7 @@
 <div class="container mt-4">
   <h3>Create a New Listing</h3>
 
-  <form method="POST" action="/listing">
+  <form method="POST" action="/listing" class="row g-3 needs-validation" novalidate>
     <!-- Title -->
     <div class="mb-2">
       <label for="title" class="form-label">Title</label>
@@ -15,6 +15,9 @@
         placeholder="Enter title"
         required
       />
+      <div class="valid-feedback">
+      Looks good!
+    </div>
     </div>
 
     <!-- Description -->
@@ -28,6 +31,9 @@
         rows="3"
         required
       ></textarea>
+      <div class="invalid-feedback">
+      Description Sould in Detailed
+    </div>
     </div>
 
     <!-- Image -->
@@ -39,8 +45,11 @@
         id="image"
         name="listing[image]"
         placeholder="Enter image URL"
-        required
+        
       />
+      <div class="valid-feedback">
+      Make Sure Image url is valid
+    </div>
     </div>
 
     <!-- Price & Country (same row) -->
@@ -55,6 +64,9 @@
           placeholder="Enter price"
           required
         />
+        <div class="invalid-feedback">
+      Price Should be valid
+    </div>
       </div>
       <div class="col-md-6 mb-3">
         <label for="country" class="form-label">Country</label>
@@ -67,6 +79,9 @@
           required
         />
       </div>
+      <div class="invalid-feedback">
+     Valid Country name
+    </div>
     </div>
 
     <!-- Location -->
@@ -80,6 +95,9 @@
         placeholder="Enter location"
         required
       />
+      <div class="invalid-feedback">
+      Make sure Location is Valid
+    </div>
     </div>
 
     <!-- Submit Button -->
