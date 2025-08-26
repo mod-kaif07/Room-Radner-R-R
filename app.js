@@ -49,7 +49,7 @@ app.get(
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const showdata = await listing_dat.findById(id);
-     if (!showdata) {
+    if (!showdata) {
       return next(new ExpressError(404, "Listing not found!"));
     }
     res.render("listings/show", { showdata });
@@ -59,7 +59,10 @@ app.get(
 // Create Route
 app.post(
   "/listing",
-  wrapAsync(async (req, res, next) => {
+  wrapAsync(async (req, res) => {
+    if (!req.body.listing) {
+      throw new ExpressError(404, "Enter valid Tittle");
+    }
     const newlistingdata = new listing_dat(req.body.listing);
     newlistingdata.save();
     res.redirect("/listing");
@@ -103,13 +106,15 @@ app.delete(
 //   next(new ExpressError(404, "Page Not Found !!"));
 // });
 
-// Error handling middleware (MUST be last)
+
+// Error handling middleware
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
-  res.status(statusCode).send(message);
+ res.render("error",{message})
 });
 
 app.listen(port, (req, res) => {
   console.log(`App is listern at Port ${port}`);
 });
+
 

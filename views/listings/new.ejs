@@ -8,7 +8,7 @@
     <div class="mb-2">
       <label for="title" class="form-label">Title</label>
       <input
-        type="text"
+    type="String"
         class="form-control"
         id="title"
         name="listing[title]"
@@ -29,6 +29,7 @@
         name="listing[description]"
         placeholder="Enter description"
         rows="3"
+        type="String"
         required
       ></textarea>
       <div class="invalid-feedback">
@@ -40,14 +41,14 @@
     <div class="mb-3">
       <label for="image" class="form-label">Image URL/Link</label>
       <input
-        type="text"
+        type="url"
         class="form-control"
         id="image"
-        name="listing[image]"
+        name="listing[image][url]"
         placeholder="Enter image URL"
         
       />
-      <div class="valid-feedback">
+      <div class="invalid-feedback">
       Make Sure Image url is valid
     </div>
     </div>
@@ -71,7 +72,7 @@
       <div class="col-md-6 mb-3">
         <label for="country" class="form-label">Country</label>
         <input
-          type="text"
+          type="String"
           class="form-control"
           id="country"
           name="listing[country]"
@@ -88,7 +89,7 @@
     <div class="mb-3">
       <label for="location" class="form-label">Location</label>
       <input
-        type="text"
+       type="String"
         class="form-control"
         id="location"
         name="listing[location]"
