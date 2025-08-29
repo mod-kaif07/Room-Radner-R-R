@@ -30,6 +30,10 @@ app.get("/", (req, res) => {
   res.render("listings/home");
 });
 
+app.get("/about",(req,res)=>{
+  res.render("listings/about");
+})
+
 app.get(
   "/listing",
   wrapAsync(async (req, res) => {
