@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - RoomRander | R|R</title>
+    <title>About Us - RoomRander</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --blue-500: #3b82f6;
+            --blue-600: #2563eb;
+            --green-500: #10b981;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,367 +29,348 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #2d3748;
-            background: #ffffff;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            color: var(--gray-900);
+            background: white;
+            font-feature-settings: 'rlig' 1, 'calt' 1;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Navigation */
-        .navbar {
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 20px 0;
-            position: sticky;
+        .nav {
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
+            backdrop-filter: saturate(180%) blur(20px);
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid var(--gray-200);
         }
 
-        .nav-content {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            justify-content: space-between;
         }
 
         .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: #2d3748;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--gray-900);
             text-decoration: none;
-        }
-
-        .nav-logo-brand {
-            font-size: 1.1rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #ffffff;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 8px;
-            padding: 8px 16px;
         }
 
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 32px;
+            align-items: center;
         }
 
-        .nav-links a {
+        .nav-link {
             text-decoration: none;
-            color: #4a5568;
+            color: var(--gray-600);
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 10px 16px;
-            border-radius: 25px;
+            font-size: 14px;
+            transition: color 0.2s ease;
         }
 
-        .nav-links a:hover {
-            color: #667eea;
-            background: rgba(102, 126, 234, 0.1);
+        .nav-link:hover, .nav-link.active {
+            color: var(--gray-900);
         }
 
-        /* Breadcrumb Header */
-        .breadcrumb-section {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            padding: 40px 0;
-            border-bottom: 3px solid #e2e8f0;
+        /* Hero Section */
+        .hero {
+            padding: 120px 24px 60px;
+            background: var(--gray-50);
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .breadcrumb {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 15px;
-            font-size: 0.9rem;
-            color: #718096;
-            margin-bottom: 20px;
+            gap: 8px;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
         }
 
         .breadcrumb a {
-            color: #667eea;
+            color: var(--gray-600);
             text-decoration: none;
         }
 
-        .page-header {
-            display: flex;
-            justify-content: space-between;
+        .breadcrumb a:hover {
+            color: var(--gray-900);
+        }
+
+        .hero-title {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--gray-600);
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.4s forwards;
+        }
+
+        .status-badge {
+            display: inline-flex;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #2d3748;
-            margin: 0;
-        }
-
-        .project-status {
-            background: linear-gradient(45deg, #48bb78, #38a169);
+            gap: 8px;
+            background: var(--green-500);
             color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 24px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.6s forwards;
         }
 
-        /* Main Content Layout */
+        .status-badge::before {
+            content: '●';
+            font-size: 8px;
+        }
+
+        /* Main Content */
         .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .content-grid {
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 60px;
-            padding: 60px 0;
-        }
-
-        .content-area {
-            background: white;
-        }
-
-        .sidebar {
-            background: #f7fafc;
-            padding: 40px 30px;
-            border-radius: 16px;
-            border: 1px solid #e2e8f0;
-            height: fit-content;
-            position: sticky;
-            top: 120px;
+            grid-template-columns: 2fr 1fr;
+            gap: 80px;
         }
 
         /* Content Sections */
         .content-section {
-            margin-bottom: 50px;
-            padding: 30px;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f1f5f9;
-        }
-
-        .section-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
+            margin-bottom: 64px;
         }
 
         .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2d3748;
-            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 20px;
         }
 
         .section-content {
-            font-size: 1rem;
-            color: #4a5568;
-            line-height: 1.8;
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.7;
         }
 
-        /* Project Stats */
-        .project-stats {
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin: 40px 0;
         }
 
-        .stat-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px 20px;
+        .stat-card {
+            background: white;
+            padding: 24px;
             border-radius: 12px;
+            border: 1px solid var(--gray-200);
             text-align: center;
         }
 
         .stat-number {
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gray-900);
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
+            font-size: 14px;
+            color: var(--gray-600);
+            font-weight: 500;
         }
 
-        /* Team Grid - Different Layout */
-        .team-section {
-            background: white;
-        }
-
-        .team-list {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-top: 25px;
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            gap: 24px;
+            margin-top: 40px;
         }
 
         .team-member {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            padding: 25px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 16px;
-            border-left: 5px solid #667eea;
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
             transition: all 0.3s ease;
         }
 
         .team-member:hover {
-            transform: translateX(10px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .member-avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            width: 64px;
+            height: 64px;
+            background: var(--gray-900);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 20px;
+            font-weight: 600;
             flex-shrink: 0;
         }
 
-        .member-info {
-            flex: 1;
-        }
-
-        .member-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 5px;
-        }
-
-        .member-roll {
-            font-size: 0.9rem;
-            color: #718096;
-            font-family: monospace;
-            background: #e2e8f0;
-            padding: 3px 8px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-bottom: 8px;
+        .member-info h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 4px;
         }
 
         .member-role {
-            font-size: 1.1rem;
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 4px;
         }
 
-        .member-tech {
+        .member-roll {
+            font-size: 12px;
+            color: var(--gray-500);
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        }
+
+        .member-skills {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
 
-        .tech-pill {
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
+        .skill-tag {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 500;
         }
 
-        /* ML Technology Section - Timeline Style */
-        .ml-timeline {
+        /* Timeline */
+        .timeline {
             position: relative;
-            margin: 30px 0;
+            margin: 40px 0;
         }
 
-        .ml-timeline::before {
+        .timeline::before {
             content: '';
             position: absolute;
-            left: 30px;
+            left: 20px;
             top: 0;
             bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, #667eea, #764ba2);
+            width: 2px;
+            background: var(--gray-200);
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 30px;
-            padding-left: 80px;
+            padding-left: 60px;
+            margin-bottom: 32px;
         }
 
         .timeline-marker {
             position: absolute;
-            left: 18px;
+            left: 12px;
             top: 8px;
-            width: 25px;
-            height: 25px;
-            background: #667eea;
+            width: 16px;
+            height: 16px;
+            background: var(--gray-900);
+            border: 3px solid white;
             border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 0 0 2px var(--gray-200);
         }
 
         .timeline-content {
             background: white;
             padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 8px;
+            border: 1px solid var(--gray-200);
         }
 
         .timeline-title {
-            font-size: 1.2rem;
+            font-size: 16px;
             font-weight: 600;
-            color: #2d3748;
+            color: var(--gray-900);
             margin-bottom: 8px;
         }
 
         .timeline-desc {
-            color: #4a5568;
+            font-size: 14px;
+            color: var(--gray-600);
             line-height: 1.6;
         }
 
-        /* Sidebar Content */
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
         .sidebar-section {
-            margin-bottom: 30px;
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            margin-bottom: 24px;
         }
 
         .sidebar-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 16px;
         }
 
         .info-list {
@@ -382,9 +380,10 @@
         .info-list li {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid #f1f5f9;
-            font-size: 0.9rem;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 14px;
         }
 
         .info-list li:last-child {
@@ -392,297 +391,279 @@
         }
 
         .info-label {
-            color: #718096;
-            font-weight: 500;
+            color: var(--gray-600);
         }
 
         .info-value {
-            color: #2d3748;
-            font-weight: 600;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .tech-tag {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 12px;
-            font-size: 0.8rem;
+            color: var(--gray-900);
             font-weight: 500;
         }
 
-        /* College Banner */
-        .college-banner {
-            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-            color: white;
-            padding: 40px 30px;
-            border-radius: 16px;
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .tech-item {
+            background: var(--gray-50);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--gray-700);
             text-align: center;
-            margin: 50px 0;
         }
 
-        .college-logo {
-            font-size: 3rem;
-            margin-bottom: 15px;
+        /* College Info */
+        .college-info {
+            background: var(--gray-900);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 64px 0;
         }
 
-        .college-name {
-            font-size: 1.3rem;
-            font-weight: 700;
+        .college-title {
+            font-size: 24px;
+            font-weight: 600;
             margin-bottom: 8px;
         }
 
-        .college-dept {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .sidebar {
-                position: static;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .page-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .page-title {
-                font-size: 2rem;
-            }
-            
-            .team-member {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .project-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .ml-timeline::before {
-                left: 15px;
-            }
-            
-            .timeline-item {
-                padding-left: 50px;
-            }
-            
-            .timeline-marker {
-                left: 3px;
-            }
+        .college-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.6s ease;
+            transition: all 0.8s ease;
         }
 
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .member-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timeline::before {
+                left: 8px;
+            }
+
+            .timeline-item {
+                padding-left: 40px;
+            }
+
+            .timeline-marker {
+                left: 0;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="/" class="nav-logo">
-                <span>RoomRander</span>
-                <span class="nav-logo-brand">R|R</span>
-            </a>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">RoomRander</a>
             <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="/listing">Listings</a>
-                <a href="/contact">Contact</a>
+                <a href="/" class="nav-link">Home</a>
+                <a href="/about" class="nav-link active">About</a>
+                <a href="/listing" class="nav-link">Listings</a>
+                <a href="/contact" class="nav-link">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Breadcrumb Header -->
-    <section class="breadcrumb-section">
-        <div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
             <div class="breadcrumb">
                 <a href="/">Home</a>
-                <span>→</span>
-                <span>About Us</span>
+                <span>/</span>
+                <span>About</span>
             </div>
-            <div class="page-header">
-                <h1 class="page-title">About Our Project</h1>
-                <div class="project-status">College Project 2024</div>
-            </div>
+            <h1 class="hero-title">About RoomRander</h1>
+            <p class="hero-subtitle">A comprehensive room rental platform built by students, for students and professionals seeking quality accommodation.</p>
+            <div class="status-badge">Academic Project 2024</div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <div class="container">
-        <div class="main-content">
-            <!-- Content Area -->
+    <div class="main-content">
+        <div class="content-grid">
+            <!-- Main Content -->
             <div class="content-area">
                 <!-- Project Overview -->
-                <div class="content-section fade-in">
-                    <div class="section-header">
-                        <div class="section-icon">🎯</div>
-                        <h2 class="section-title">Project Overview</h2>
-                    </div>
+                <section class="content-section fade-in">
+                    <h2 class="section-title">Project Overview</h2>
                     <div class="section-content">
-                        <p>RoomRander is a comprehensive web-based room rental platform that connects property owners with potential tenants through an intuitive interface. Currently featuring robust property management, user authentication, and smart search capabilities, with exciting Machine Learning features planned for future updates.</p>
+                        <p>RoomRander is a modern web-based room rental platform that bridges the gap between property owners and potential tenants. Our platform emphasizes user experience, security, and intelligent matching to make room hunting effortless.</p>
                         
-                        <div class="project-stats">
-                            <div class="stat-box">
+                        <div class="stats-grid">
+                            <div class="stat-card">
                                 <span class="stat-number">25+</span>
                                 <span class="stat-label">Core Features</span>
                             </div>
-                            <div class="stat-box">
+                            <div class="stat-card">
                                 <span class="stat-number">100%</span>
-                                <span class="stat-label">Responsive Design</span>
+                                <span class="stat-label">Responsive</span>
                             </div>
-                            <div class="stat-box">
+                            <div class="stat-card">
                                 <span class="stat-number">3</span>
-                                <span class="stat-label">Development Modules</span>
+                                <span class="stat-label">Developers</span>
                             </div>
                         </div>
 
-                        <p>The platform provides a seamless experience for both property owners looking to list their rooms and tenants searching for the perfect accommodation. With planned ML integration, the system will offer intelligent pricing recommendations based on market data and property features.</p>
+                        <p>Built with modern web technologies and designed for scalability, our platform currently serves basic room listing and search functionality, with advanced machine learning features planned for future releases.</p>
                     </div>
-                </div>
+                </section>
 
-                <!-- Future Updates -->
-                <div class="content-section fade-in">
-                    <div class="section-header">
-                        <div class="section-icon">🚀</div>
-                        <h2 class="section-title">Future Updates & Enhancements</h2>
-                    </div>
+                <!-- Future Enhancements -->
+                <section class="content-section fade-in">
+                    <h2 class="section-title">Future Enhancements</h2>
                     <div class="section-content">
-                        <p>Our platform is designed with scalability and future enhancements in mind. The upcoming Machine Learning integration will revolutionize room pricing:</p>
+                        <p>Our roadmap includes cutting-edge features that will revolutionize the room rental experience:</p>
                         
-                        <div class="ml-timeline">
+                        <div class="timeline">
                             <div class="timeline-item">
                                 <div class="timeline-marker"></div>
                                 <div class="timeline-content">
                                     <h4 class="timeline-title">Machine Learning Integration</h4>
-                                    <p class="timeline-desc">Implementing advanced ML algorithms to predict room prices based on location, amenities, size, and historical data patterns.</p>
+                                    <p class="timeline-desc">Advanced algorithms for intelligent price prediction based on location, amenities, and market trends.</p>
                                 </div>
                             </div>
                             
                             <div class="timeline-item">
                                 <div class="timeline-marker"></div>
                                 <div class="timeline-content">
-                                    <h4 class="timeline-title">Smart Price Prediction</h4>
-                                    <p class="timeline-desc">AI-powered system will analyze market trends, seasonal demands, and property features to suggest optimal pricing strategies.</p>
+                                    <h4 class="timeline-title">Smart Recommendation Engine</h4>
+                                    <p class="timeline-desc">Personalized room suggestions based on user preferences and behavioral patterns.</p>
                                 </div>
                             </div>
                             
                             <div class="timeline-item">
                                 <div class="timeline-marker"></div>
                                 <div class="timeline-content">
-                                    <h4 class="timeline-title">Real-time Analytics Dashboard</h4>
-                                    <p class="timeline-desc">Comprehensive analytics showing market insights, pricing trends, and performance metrics for property owners.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <h4 class="timeline-title">Advanced Recommendation Engine</h4>
-                                    <p class="timeline-desc">Personalized room recommendations for tenants based on preferences, budget, and historical search patterns.</p>
+                                    <h4 class="timeline-title">Real-time Analytics</h4>
+                                    <p class="timeline-desc">Comprehensive dashboard showing market insights and performance metrics.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
                 <!-- Development Team -->
-                <div class="content-section fade-in">
-                    <div class="section-header">
-                        <div class="section-icon">👥</div>
-                        <h2 class="section-title">Development Team</h2>
-                    </div>
+                <section class="content-section fade-in">
+                    <h2 class="section-title">Development Team</h2>
                     <div class="section-content">
-                        <p>Our dedicated team of computer science students brought specialized expertise in different domains to create this comprehensive room rental solution:</p>
+                        <p>Our dedicated team brings specialized expertise across different domains:</p>
                         
-                        <div class="team-list">
+                        <div class="team-grid">
                             <div class="team-member">
-                                <div class="member-avatar">MK</div>
-                                <div class="member-info">
-                                    <h3 class="member-name">Mohammad Kaif</h3>
-                                    <div class="member-roll">Roll No: 226320050</div>
-                                    <div class="member-role">Backend Engineer & REST API Developer</div>
-                                    <div class="member-tech">
-                                        <span class="tech-pill">Node.js</span>
-                                        <span class="tech-pill">Express.js</span>
-                                        <span class="tech-pill">MongoDB</span>
-                                        <span class="tech-pill">REST APIs</span>
-                                        <span class="tech-pill">Authentication</span>
-                                        <span class="tech-pill">Database Design</span>
+                                <div class="member-header">
+                                    <div class="member-avatar">MK</div>
+                                    <div class="member-info">
+                                        <h3>Mohammad Kaif</h3>
+                                        <div class="member-role">Backend Engineer & API Developer</div>
+                                        <div class="member-roll">Roll: 226320050</div>
                                     </div>
+                                </div>
+                                <div class="member-skills">
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">Express.js</span>
+                                    <span class="skill-tag">MongoDB</span>
+                                    <span class="skill-tag">REST APIs</span>
+                                    <span class="skill-tag">Authentication</span>
                                 </div>
                             </div>
 
                             <div class="team-member">
-                                <div class="member-avatar">MS</div>
-                                <div class="member-info">
-                                    <h3 class="member-name">Md Shanawaz</h3>
-                                    <div class="member-roll">Roll No: 226320049</div>
-                                    <div class="member-role">Machine Learning Engineer & Data Scientist</div>
-                                    <div class="member-tech">
-                                        <span class="tech-pill">Python</span>
-                                        <span class="tech-pill">Scikit-learn</span>
-                                        <span class="tech-pill">Pandas</span>
-                                        <span class="tech-pill">NumPy</span>
-                                        <span class="tech-pill">Data Analysis</span>
-                                        <span class="tech-pill">ML Algorithms</span>
+                                <div class="member-header">
+                                    <div class="member-avatar">MS</div>
+                                    <div class="member-info">
+                                        <h3>Md Shanawaz</h3>
+                                        <div class="member-role">ML Engineer & Data Scientist</div>
+                                        <div class="member-roll">Roll: 226320049</div>
                                     </div>
+                                </div>
+                                <div class="member-skills">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Scikit-learn</span>
+                                    <span class="skill-tag">Pandas</span>
+                                    <span class="skill-tag">NumPy</span>
+                                    <span class="skill-tag">ML Algorithms</span>
                                 </div>
                             </div>
 
                             <div class="team-member">
-                                <div class="member-avatar">GJ</div>
-                                <div class="member-info">
-                                    <h3 class="member-name">Gopal Jha</h3>
-                                    <div class="member-roll">Roll No: 226320033</div>
-                                    <div class="member-role">Frontend Developer & UI/UX Designer</div>
-                                    <div class="member-tech">
-                                        <span class="tech-pill">HTML5</span>
-                                        <span class="tech-pill">CSS3</span>
-                                        <span class="tech-pill">JavaScript</span>
-                                        <span class="tech-pill">React.js</span>
-                                        <span class="tech-pill">Bootstrap</span>
-                                        <span class="tech-pill">UI/UX Design</span>
+                                <div class="member-header">
+                                    <div class="member-avatar">GJ</div>
+                                    <div class="member-info">
+                                        <h3>Gopal Jha</h3>
+                                        <div class="member-role">Frontend Developer & UI/UX Designer</div>
+                                        <div class="member-roll">Roll: 226320033</div>
                                     </div>
+                                </div>
+                                <div class="member-skills">
+                                    <span class="skill-tag">React.js</span>
+                                    <span class="skill-tag">HTML/CSS</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">UI/UX</span>
+                                    <span class="skill-tag">Bootstrap</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
                 <!-- Academic Institution -->
-                <div class="college-banner fade-in">
-                    <div class="college-logo">🎓</div>
-                    <h3 class="college-name"> Electronics and Communication Engineering</h3>
-                    <p class="college-dept">Final Year Academic Project - 2026 </p>
+                <div class="college-info fade-in">
+                    <h3 class="college-title">Electronics and Communication Engineering</h3>
+                    <p class="college-subtitle">Final Year Academic Project - 2026</p>
                 </div>
             </div>
 
@@ -692,57 +673,50 @@
                     <h3 class="sidebar-title">Project Details</h3>
                     <ul class="info-list">
                         <li>
-                            <span class="info-label">Duration:</span>
+                            <span class="info-label">Duration</span>
                             <span class="info-value">6 Months</span>
                         </li>
                         <li>
-                            <span class="info-label">Team Size:</span>
+                            <span class="info-label">Team Size</span>
                             <span class="info-value">3 Members</span>
                         </li>
                         <li>
-                            <span class="info-label">Category:</span>
-                            <span class="info-value">Web Development</span>
+                            <span class="info-label">Type</span>
+                            <span class="info-value">Full-Stack</span>
                         </li>
                         <li>
-                            <span class="info-label">Type:</span>
-                            <span class="info-value">Full-Stack Project</span>
-                        </li>
-                        <li>
-                            <span class="info-label">Status:</span>
-                            <span class="info-value">Completed</span>
+                            <span class="info-label">Status</span>
+                            <span class="info-value">Active</span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">Technology Stack</h3>
-                    <div class="tech-stack">
-                        <span class="tech-tag">React.js</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Express.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">REST APIs</span>
+                    <div class="tech-grid">
+                        <span class="tech-item">React.js</span>
+                        <span class="tech-item">Node.js</span>
+                        <span class="tech-item">Express.js</span>
+                        <span class="tech-item">MongoDB</span>
+                        <span class="tech-item">HTML5</span>
+                        <span class="tech-item">CSS3</span>
+                        <span class="tech-item">JavaScript</span>
+                        <span class="tech-item">REST APIs</span>
                     </div>
                 </div>
 
                 <div class="sidebar-section">
-                    <h3 class="sidebar-title">Future Technology</h3>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">Machine Learning</span>
-                        <span class="tech-tag">Data Analysis</span>
-                        <span class="tech-tag">AI Algorithms</span>
+                    <h3 class="sidebar-title">Future Tech</h3>
+                    <div class="tech-grid">
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">Scikit-learn</span>
+                        <span class="tech-item">Pandas</span>
+                        <span class="tech-item">ML Models</span>
                     </div>
                 </div>
 
                 <div class="sidebar-section">
-                    <h3 class="sidebar-title">Current Features</h3>
+                    <h3 class="sidebar-title">Features</h3>
                     <ul class="info-list">
                         <li>
                             <span class="info-label">Property Listings</span>
@@ -751,28 +725,14 @@
                             <span class="info-label">User Authentication</span>
                         </li>
                         <li>
-                            <span class="info-label">Search & Filtering</span>
+                            <span class="info-label">Search & Filter</span>
                         </li>
                         <li>
                             <span class="info-label">Responsive Design</span>
                         </li>
-                        
                         <li>
                             <span class="info-label">Contact System</span>
                         </li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">Upcoming Features</h3>
-                    <ul class="info-list">
-                        <li>
-                            <span class="info-label">ML Price Prediction</span>
-                        </li>
-                        <li>
-                            <span class="info-label">Smart Recommendations</span>
-                        </li>
-                       
                     </ul>
                 </div>
             </div>
@@ -780,7 +740,7 @@
     </div>
 
     <script>
-        // Scroll animations
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -798,51 +758,20 @@
             observer.observe(el);
         });
 
-        // Team member hover effects
-        document.querySelectorAll('.team-member').forEach(member => {
-            member.addEventListener('mouseenter', function() {
-                this.querySelector('.member-avatar').style.transform = 'scale(1.1)';
-                this.querySelector('.member-avatar').style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
-            });
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const nav = document.querySelector('.nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
             
-            member.addEventListener('mouseleave', function() {
-                this.querySelector('.member-avatar').style.transform = 'scale(1)';
-                this.querySelector('.member-avatar').style.boxShadow = 'none';
-            });
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Dynamic timeline animation
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateX(0)';
-                    }, index * 200);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        timelineItems.forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(-20px)';
-            item.style.transition = 'all 0.6s ease';
-            timelineObserver.observe(item);
+            if (currentScroll > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.8)';
+            }
+            
+            lastScroll = currentScroll;
         });
     </script>
 </body>
