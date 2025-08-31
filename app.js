@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
+const { listingSchema } = require("./schema.js");
 
 let port = 8080;
 
@@ -24,15 +25,25 @@ app.use(methodOverride("_method"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "public")));
 
+const validateListing = (req, res, next) => {
+  const { error } = listingSchema.validate(req.body);
+  
+  if (error) {
+    const msg = error.details.map(el => el.message).join(",");
+    throw new ExpressError(400,msg);
+  } else {
+    next();
+  }
+};
 app.get("/", (req, res) => {
   res.render("listings/home");
 });
 
-app.get("/about",(req,res)=>{
+app.get("/about", (req, res) => {
   res.render("listings/about");
-})
+});
 
 app.get(
   "/listing",
@@ -50,11 +61,12 @@ app.get("/listing/addnew", (req, res) => {
 //Show Route
 app.get(
   "/listing/:id",
+
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const showdata = await listing_dat.findById(id);
     if (!showdata) {
-      return next(new ExpressError(404, "Listing not found!"));
+      throw new ExpressError(404, "Listing not found!");
     }
     res.render("listings/show", { showdata });
   })
@@ -63,10 +75,8 @@ app.get(
 // Create Route
 app.post(
   "/listing",
-  wrapAsync(async (req, res) => {
-    if (!req.body.listing) {
-      throw new ExpressError(404, "Enter valid Tittle");
-    }
+  validateListing,
+  wrapAsync(async (req, res, next) => {
     const newlistingdata = new listing_dat(req.body.listing);
     newlistingdata.save();
     res.redirect("/listing");
@@ -86,6 +96,7 @@ app.get(
 //update Route
 app.put(
   "/listing/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let updatelisting = req.body.listing; // contains form data
@@ -106,19 +117,17 @@ app.delete(
     res.redirect("/listing");
   })
 );
-// app.all("*", (req, res, next) => {
-//   next(new ExpressError(404, "Page Not Found !!"));
-// });
 
+app.all(/.*/, (req, res, next) => {
+  next(new ExpressError(404, "Page Not Found !!"));
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
- res.render("error",{message})
+  res.render("error", { message });
 });
 
 app.listen(port, (req, res) => {
   console.log(`App is listern at Port ${port}`);
 });
-
-

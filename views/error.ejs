@@ -1,7 +1,63 @@
 <% layout('/layouts/boilerplate') -%>
-<div class="alert alert-danger d-flex align-items-center" role="alert">
-  <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-  <div>
-    An example danger alert with an icon
+
+<div class="error-container">
+  <div class="error-card">
+    
+    <% if (message && message.includes("Page Not Found")) { %>
+      <!-- 404 Page Not Found -->
+      <div class="error-illustration">
+        <div class="error-404">404</div>
+        
+      </div>
+      
+      <h1 class="error-title">Page Not Found</h1>
+      <p class="error-subtitle">
+        Sorry, we couldn't find the page you're looking for. 
+        It might have been moved, deleted, or you entered the wrong URL.
+      </p>
+      
+      <div class="helpful-links">
+        <h4>Maybe you're looking for:</h4>
+        <a href="/rooms">Browse Rooms</a>
+        <a href="/search">Search Rooms</a>
+        <a href="/nearby">Nearby Rooms</a>
+      </div>
+      
+    <% } else { %>
+      <!-- General Error -->
+      <div class="error-illustration">
+        <span class="error-emoji">😔</span>
+      </div>
+      
+      <h1 class="error-title">Oops! Something went wrong</h1>
+      <p class="error-subtitle">
+        We're experiencing some technical difficulties. 
+        Please try again in a moment.
+      </p>
+      
+      <% if (message) { %>
+        <div class="error-message-box">
+          <%= message %>
+        </div>
+      <% } %>
+      
+      <div class="helpful-links">
+        <h4>Need help?</h4>
+        <a href="/contact">Contact Support</a>
+        <a href="/help">Help Center</a>
+      </div>
+      
+    <% } %>
+    
+    <!-- Action Buttons -->
+    <div class="error-actions">
+      <a href="/" class="btn btn-primary">
+        🏠 Go Home
+      </a>
+      <button onclick="history.back()" class="btn btn-secondary">
+        ← Go Back
+      </button>
+    </div>
+    
   </div>
 </div>
