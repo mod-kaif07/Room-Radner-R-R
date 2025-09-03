@@ -40,5 +40,123 @@
         </form>
       </div>
     </div>
+    <!-- Form review  -->
+
+    <div class="col-8 offset-2 review-form-container">
+      <hr />
+      <h4 class="mb-3">Write a Review</h4>
+      <form
+        action="/listing/<%= showdata._id %>/review"
+        method="post"
+        class="review-form needs-validation"
+        novalidate
+      >
+        <!-- Name -->
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="review[name]"
+            placeholder="Your Name"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter your name.</div>
+        </div>
+
+        <!-- Comment -->
+        <div class="mb-3">
+          <textarea
+            class="form-control"
+            rows="3"
+            placeholder="Write your review..."
+            name="review[comment]"
+            required
+          ></textarea>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please write your review.</div>
+        </div>
+
+        <!-- Rating -->
+        <div class="mb-3">
+          <label for="range2" class="form-label">Rating (0–5)</label>
+          <input
+            type="range"
+            class="form-range"
+            min="0"
+            max="5"
+            id="range2"
+            name="review[rating]"
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide a rating.</div>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="
+            --bs-btn-padding-y: 0.25rem;
+            --bs-btn-padding-x: 0.5rem;
+            --bs-btn-font-size: 0.75rem;
+          "
+        >
+          Submit
+        </button>
+      </form>
+
+      <hr />
+      <div class="row">
+        <h4>Reviews</h4>
+
+        <% if (showdata.reviews && showdata.reviews.length > 0) { %> <% for (let
+        review of showdata.reviews) { %>
+        <div class="col-md-6 mb-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                alt="Unknown User"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  margin-right: 8px;
+                "
+              />
+              <strong><%= review.name %></strong>
+              <div style="padding-top: 5px">
+                Rating: <%= review.rating %> stars
+                <span
+                  class="text-muted"
+                  style="font-size: 0.6rem; padding-left: 10px"
+                >
+                  <%= review.createdAt.toDateString() %>
+                </span>
+              </div>
+              <div><%= review.comment %></div>
+            </div>
+            <form
+              action="/listing/<%= showdata._id%>/review/<%= review._id%>?_method=DELETE"
+              method="post"
+            >
+              <div class=" gap-1 d-md-flex justify-content-md-end" style="padding-bottom: 10px;">
+                <button class="btn btn-primary me-md-2" type="submit">
+                Delete
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <% } %> <% } else { %>
+        <p style="display: flex; text-align: center; justify-content: center">
+          No reviews yet.
+        </p>
+        <% } %>
+      </div>
+    </div>
   </div>
+
+  <!-- here is code of the vladiation of bootsrap -->
 </body>
