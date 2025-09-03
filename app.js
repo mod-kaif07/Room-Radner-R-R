@@ -10,6 +10,7 @@ const ExpressError = require("./utils/ExpressError");
 const { listingSchema, reviewValidationSchema } = require("./schema.js");
 const review = require("./models/review.js");
 const { console } = require("inspector");
+const listingRoutes = require("./routes/listings.js");
 
 let port = 8080;
 
@@ -29,17 +30,6 @@ app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
-const validateListing = (req, res, next) => {
-  const { error } = listingSchema.validate(req.body);
-
-  if (error) {
-    const msg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, msg);
-  } else {
-    next();
-  }
-};
-
 const validateReview = (req, res, next) => {
   const { error } = reviewValidationSchema.validate(req.body);
 
@@ -55,84 +45,7 @@ app.get("/", (req, res) => {
   res.render("listings/home");
 });
 
-app.get("/about", (req, res) => {
-  res.render("listings/about");
-});
-
-app.get(
-  "/listing",
-  wrapAsync(async (req, res) => {
-    const allListing = await listing_dat.find({});
-    res.render("listings/index", { allListing });
-  })
-);
-
-//Add New listing
-app.get("/listing/addnew", (req, res) => {
-  res.render("listings/new");
-});
-
-//Show Route
-app.get(
-  "/listing/:id",
-
-  wrapAsync(async (req, res) => {
-    const { id } = req.params;
-    const showdata = await listing_dat.findById(id).populate("reviews");
-    if (!showdata) {
-      throw new ExpressError(404, "Listing not found!");
-    }
-    res.render("listings/show", { showdata });
-  })
-);
-
-// Create Route
-app.post(
-  "/listing",
-  validateListing,
-  wrapAsync(async (req, res, next) => {
-    const newlistingdata = new listing_dat(req.body.listing);
-
-    newlistingdata.save();
-
-    res.redirect("/listing");
-  })
-);
-
-// edit Route
-app.get(
-  "/listing/:id/edit",
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    const editable_data = await listing_dat.findById(id);
-    res.render("listings/edit", { editable_data });
-  })
-);
-
-//update Route
-app.put(
-  "/listing/:id",
-  validateListing,
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let updatelisting = req.body.listing; // contains form data
-    const finddeatils = await listing_dat.findByIdAndUpdate(id, updatelisting, {
-      new: true,
-      runValidators: true,
-    });
-    res.redirect(`/listing/${id}`);
-  })
-);
-
-//Delete route
-app.delete(
-  "/listing/:id",
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    const find_id_delete = await listing_dat.findByIdAndDelete(id);
-    res.redirect("/listing");
-  })
-);
+app.use("/listing", listingRoutes);
 
 //review routes
 app.post(
