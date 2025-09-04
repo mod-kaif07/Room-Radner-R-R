@@ -1,16 +1,14 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const listing_dat = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
-const { listingSchema, reviewValidationSchema } = require("./schema.js");
-const review = require("./models/review.js");
 const { console } = require("inspector");
+
 const listingRoutes = require("./routes/listings.js");
+const reviewRoutes = require("./routes/review.js");
 
 let port = 8080;
 
@@ -30,48 +28,17 @@ app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
-const validateReview = (req, res, next) => {
-  const { error } = reviewValidationSchema.validate(req.body);
 
-  if (error) {
-    const msg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, msg);
-  } else {
-    next();
-  }
-};
 
 app.get("/", (req, res) => {
   res.render("listings/home");
 });
 
+
+//listing route and review route 
 app.use("/listing", listingRoutes);
+app.use("/listing/:id/review", reviewRoutes);
 
-//review routes
-app.post(
-  "/listing/:id/review",
-  validateReview,
-  wrapAsync(async (req, res) => {
-    let listing = await listing_dat.findById(req.params.id);
-    let newReview = new review(req.body.review);
-    listing.reviews.push(newReview);
-    await newReview.save();
-    await listing.save();
-
-    res.redirect(`/listing/${listing.id}`);
-  })
-);
-
-//review Delete route
-app.delete(
-  "/listing/:id/review/:rewid",
-  wrapAsync(async (req, res) => {
-    let { id, rewid } = req.params;
-    await listing_dat.findByIdAndUpdate(id, { $pull: { reviews: rewid } });
-    await review.findByIdAndDelete(rewid);
-    res.redirect(`/listing/${id}`);
-  })
-);
 
 app.all(/.*/, (req, res, next) => {
   next(new ExpressError(404, "Page Not Found !!"));
