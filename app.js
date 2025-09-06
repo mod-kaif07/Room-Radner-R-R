@@ -6,9 +6,20 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
 const { console } = require("inspector");
+const session = require("express-session");
+const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local"); // ✅ correct name
+const User = require("./models/user.js"); // ✅ model names usually start with capital letter
 
 const listingRoutes = require("./routes/listings.js");
 const reviewRoutes = require("./routes/review.js");
+
+let sessionOption = {
+  secret: "keyboard cat",
+  resave: false,
+  saveUninitialized: true,
+};
 
 let port = 8080;
 
@@ -28,17 +39,29 @@ app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(session(sessionOption));
+app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.get("/", (req, res) => {
   res.render("listings/home");
 });
 
+app.use((req, res, next) => {
+  res.locals.sucssMsg = req.flash("success");
+  res.locals.errMsg = req.flash("error");
+  next();
+});
 
-//listing route and review route 
+//listing route and review route
 app.use("/listing", listingRoutes);
 app.use("/listing/:id/review", reviewRoutes);
-
 
 app.all(/.*/, (req, res, next) => {
   next(new ExpressError(404, "Page Not Found !!"));

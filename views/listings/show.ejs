@@ -73,7 +73,9 @@
             name="review[comment]"
             required
           ></textarea>
-          <div class="valid-feedback">Looks good!</div>
+          <div class="valid-feedback">
+             Looks good! (Review must be at least 5 characters)
+          </div>
           <div class="invalid-feedback">Please write your review.</div>
         </div>
 
@@ -141,9 +143,12 @@
               action="/listing/<%= showdata._id%>/review/<%= review._id%>?_method=DELETE"
               method="post"
             >
-              <div class=" gap-1 d-md-flex justify-content-md-end" style="padding-bottom: 10px;">
+              <div
+                class="gap-1 d-md-flex justify-content-md-end"
+                style="padding-bottom: 10px"
+              >
                 <button class="btn btn-primary me-md-2" type="submit">
-                Delete
+                  Delete
                 </button>
               </div>
             </form>

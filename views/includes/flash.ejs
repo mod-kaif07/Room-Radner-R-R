@@ -1,0 +1,17 @@
+<% if (sucssMsg && sucssMsg.length > 0) { %>
+  <div class="alert alert-success alert-dismissible fade show col-6 mx-auto shadow-lg border-0 rounded-4"
+       role="alert"
+       style="font-size: 15px; background: linear-gradient(135deg, #e9f7ef, #fdfdfd); color: #155724; letter-spacing: 0.3px; padding: 14px 18px;">
+    <%= sucssMsg[0] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<% if (errMsg && errMsg.length > 0) { %>
+  <div class="alert alert-danger alert-dismissible fade show col-6 mx-auto shadow-lg border-0 rounded-4"
+       role="alert"
+       style="font-size: 15px; background: linear-gradient(135deg, #fdecea, #fff); color: #721c24; letter-spacing: 0.3px; padding: 14px 18px;">
+    <%= errMsg[0] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
