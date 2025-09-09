@@ -3,21 +3,24 @@
 <div class="container mt-4">
   <h3>Create a New Listing</h3>
 
-  <form method="POST" action="/listing" class="row g-3 needs-validation" novalidate>
+  <form
+    method="POST"
+    action="/listing"
+    class="row g-3 needs-validation"
+    novalidate
+  >
     <!-- Title -->
     <div class="mb-2">
       <label for="title" class="form-label">Title</label>
       <input
-    type="String"
+        type="String"
         class="form-control"
         id="title"
         name="listing[title]"
         placeholder="Enter title"
         required
       />
-      <div class="valid-feedback">
-      Looks good!
-    </div>
+      <div class="valid-feedback">Looks good!</div>
     </div>
 
     <!-- Description -->
@@ -32,9 +35,7 @@
         type="String"
         required
       ></textarea>
-      <div class="invalid-feedback">
-      Description Sould in Detailed
-    </div>
+      <div class="invalid-feedback">Description Sould in Detailed</div>
     </div>
 
     <!-- Image -->
@@ -46,11 +47,8 @@
         id="image"
         name="listing[image][url]"
         placeholder="Enter image URL"
-        
       />
-      <div class="invalid-feedback">
-      Make Sure Image url is valid
-    </div>
+      <div class="invalid-feedback">Make Sure Image url is valid</div>
     </div>
 
     <!-- Price & Country (same row) -->
@@ -65,9 +63,7 @@
           placeholder="Enter price"
           required
         />
-        <div class="invalid-feedback">
-      Price Should be valid
-    </div>
+        <div class="invalid-feedback">Price Should be valid</div>
       </div>
       <div class="col-md-6 mb-3">
         <label for="country" class="form-label">Country</label>
@@ -80,30 +76,26 @@
           required
         />
       </div>
-      <div class="invalid-feedback">
-     Valid Country name
-    </div>
+      <div class="invalid-feedback">Valid Country name</div>
     </div>
 
     <!-- Location -->
     <div class="mb-3">
       <label for="location" class="form-label">Location</label>
       <input
-       type="String"
+        type="String"
         class="form-control"
         id="location"
         name="listing[location]"
         placeholder="Enter location"
         required
       />
-      <div class="invalid-feedback">
-      Make sure Location is Valid
-    </div>
+      <div class="invalid-feedback">Make sure Location is Valid</div>
     </div>
 
     <!-- Submit Button -->
-    <div class="d-grid gap-2 col-6 mx-auto " >
-      <button class="btn btn-primary" type="submit"> Add </button>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-primary" type="submit">Add</button>
     </div>
     <!-- <button type="" class="bbtn btn-primary btn-sm">Add</button> -->
   </form>

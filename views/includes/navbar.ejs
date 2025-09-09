@@ -1,9 +1,28 @@
 <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
   <div class="container-fluid">
     <!-- Brand / Logo -->
-    <a class="navbar-brand fw-bold" href="/"
-      ><i class="fa-solid fa-house-user fa-beat"></i
-    ></a>
+   <a class="navbar-brand fw-bold" href="/">
+  <img src="/images/mainlogo.png" 
+       alt="Home icon" 
+       style="height: 60px;" 
+       class="logo-animate" />
+</a>
+
+<style>
+  .logo-animate {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+</style>
+
 
     <!-- Toggler for Mobile -->
     <button
@@ -25,10 +44,33 @@
         <a class="nav-link" href="#">Search Rooms</a>
         <a class="nav-link" href="#">Nearby Rooms</a>
         <a class="nav-link" href="/listing">Rooms</a>
-        <a class="nav-link" href="/listing/addnew?">List Your Room</a>
-        <a class="nav-link btn btn-primary text-white px-3 ms-2" href="#"
-          >Login / Sign Up</a
+        <a class="nav-link d-flex flex-column align-items-center" href="/listing/addnew?">
+         <img src="/images/listing room.png" alt="Login" style="height: 35px" />
+         <span class="text-muted" style="font-size: 12px">Add Room</span>
+        <% if (!currentUser) { %>
+        <!-- Show when not logged in -->
+        <a class="nav-link d-flex flex-column align-items-center" href="/login">
+          <img src="/images/login.png" alt="Login" style="height: 30px" />
+           <span class="text-muted" style="font-size: 12px">Login</span>
+          
+
+        </a>
+        <a class="nav-link d-flex flex-column align-items-center" href="/register">
+          <img src="/images/singi.png" alt="Sign Up" style="height: 30px" />
+          <span class="text-muted" style="font-size: 12px">Register</span>
+        </a>
+        <% } else { %>
+        <!-- Show when logged in -->
+        <a
+          class="nav-link d-flex flex-column align-items-center"
+          href="/logout"
         >
+          <img src="/images/logout_n.png" alt="Logout" style="height: 25px" />
+
+          <span class="text-muted" style="font-size: 12px">Logout</span>
+           <span class="text-muted" style="font-size: 7px"> <%= currentUser.username %></span>
+        </a>
+        <% } %>
       </div>
     </div>
   </div>

@@ -10,5 +10,5 @@ const userSchema= new Schema({
         require:true
     }
 })
-User.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('User', userSchema);

@@ -5,7 +5,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
-const { console } = require("inspector");
+// const { console } = require("inspector");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -14,6 +14,7 @@ const User = require("./models/user.js"); // ✅ model names usually start with 
 
 const listingRoutes = require("./routes/listings.js");
 const reviewRoutes = require("./routes/review.js");
+const userRoutes = require("./routes/user.js");
 
 let sessionOption = {
   secret: "keyboard cat",
@@ -49,19 +50,21 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.get("/", (req, res) => {
-  res.render("listings/home");
-});
-
 app.use((req, res, next) => {
+   res.locals.currentUser = req.user;
   res.locals.sucssMsg = req.flash("success");
   res.locals.errMsg = req.flash("error");
   next();
 });
 
+app.get("/", (req, res) => {
+  res.render("listings/home");
+});
+
 //listing route and review route
 app.use("/listing", listingRoutes);
 app.use("/listing/:id/review", reviewRoutes);
+app.use("/", userRoutes);
 
 app.all(/.*/, (req, res, next) => {
   next(new ExpressError(404, "Page Not Found !!"));

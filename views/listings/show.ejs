@@ -6,40 +6,75 @@
 
   <div class="row">
     <div class="col-8 offset-2">
-      <div class="card mb-3">
-        <img
-          src="<%=showdata.image.url%>"
-          class="show_img"
-          alt="Listing Images"
-        />
-        <div class="card-body">
-          <h5 class="card-title"><b> <%=showdata.title %></b></h5>
-          <p class="card-text"><%=showdata.description %></p>
-          <p class="card-text">
-            &#8377; <%= showdata.price.toLocaleString("en-IN") %>/Month
-          </p>
-          <p class="card-text"><%=showdata.location %></p>
-          <p class="card-text">
-            <small class="text-body-secondary"><%=showdata.country %></small>
-          </p>
-        </div>
-      </div>
+  <div class="card mb-3">
+    <img
+      src="<%=showdata.image.url%>"
+      class="show_img"
+      alt="Listing Images"
+    />
+    <div class="card-body">
+      <h5 class="card-title"><b><%= showdata.title %></b></h5>
+      <p class="card-text"><%= showdata.description %></p>
+      <p class="card-text">
+        &#8377; <%= showdata.price.toLocaleString("en-IN") %>/Month
+      </p>
+      <p class="card-text"><%= showdata.location %></p>
+      <p class="card-text">
+        <small class="text-body-secondary"><%= showdata.country %></small>
+      </p>
+    </div>
+  </div>
 
-      <div class="d-flex gap-5 mb-5">
-        <!-- Edit Button -->
-        <form action="/listing/<%= showdata._id %>/edit" method="get">
-          <button class="btn btn-dark offset-3 col-12">Edit</button>
-        </form>
+  <!-- ✅ Buttons only visible if currentUser is owner -->
 
-        <!-- Delete Button -->
-        <form
-          action="/listing/<%= showdata._id %>?_method=DELETE"
-          method="POST"
-        >
-          <button class="btn btn-danger offset-5" type="submit">Delete</button>
-        </form>
+    <div class="d-flex gap-5 mb-5">
+      <!-- Edit Button -->
+      <form action="/listing/<%= showdata._id %>/edit" method="get">
+        <button class="btn btn-dark offset-3 col-12">Edit</button>
+      </form>
+
+      <!-- Delete Button -->
+      <form action="/listing/<%= showdata._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-danger offset-5" type="submit">Delete</button>
+      </form>
+    </div>
+     <!-- yha per  -->
+</div>
+
+
+    <!-- sort Information of host -->
+        <!-- Short Host Information Section -->
+<div class="col-8 offset-2 mb-4">
+  <div class="d-flex align-items-center">
+    <!-- Host Profile Image -->
+    <div class="position-relative me-3">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+        alt="Host Profile"
+        class="rounded-circle"
+        style="width: 60px; height: 60px; object-fit: cover;"
+      />
+      <!-- Superhost Badge -->
+      <div class="position-absolute bottom-0 end-0 bg-danger rounded-circle d-flex align-items-center justify-content-center" 
+           style="width: 18px; height: 18px;">
+        <i class="fas fa-check text-white" style="font-size: 8px;"></i>
       </div>
     </div>
+    
+    <!-- Host Info -->
+    <div>
+      <h5 class="mb-1">Hosted by <%= showdata.owner ? showdata.owner.username : 'Anonymous Host' %></h5>
+      <p class="text-muted mb-0">
+        <span class="badge bg-danger me-2">Superhost</span>
+<small>
+      Created on 
+      <%= showdata.createdAt ? new Date(showdata.createdAt).toLocaleDateString("en-US", { 
+        year: 'numeric', month: 'long', day: 'numeric' 
+      }) : 'Recently' %>
+    </small>      </p>
+    </div>
+  </div>
+</div>
     <!-- Form review  -->
 
     <div class="col-8 offset-2 review-form-container">
@@ -74,12 +109,11 @@
             required
           ></textarea>
           <div class="valid-feedback">
-             Looks good! (Review must be at least 5 characters)
+            Looks good! (Review must be at least 5 characters)
           </div>
           <div class="invalid-feedback">Please write your review.</div>
         </div>
-
-        <!-- Rating -->
+    <!-- Rating -->
         <div class="mb-3">
           <label for="range2" class="form-label">Rating (0–5)</label>
           <input
@@ -161,7 +195,195 @@
         <% } %>
       </div>
     </div>
+          
+  <div class="host-section mb-5 col-8 offset-2">
+    <hr>
+  <h3 class="mb-4">Meet your host</h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <!-- Host Profile Column -->
+        <div class="col-md-4">
+          <div class="text-center">
+            <!-- Host Profile Image -->
+            <div class="position-relative d-inline-block mb-3">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                alt="Host Profile"
+                class="rounded-circle"
+                style="
+                  width: 120px;
+                  height: 120px;
+                  object-fit: cover;
+                  border: 3px solid #fff;
+                  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                "
+              />
+            </div>
+
+            <!-- Host Name -->
+            <h4 class="mb-1"><%= showdata.owner ? showdata.owner.username : 'Anonymous Host' %></h4>
+
+            <!-- Host Stats -->
+            <div class="host-stats mb-4">
+              <div class="row text-center">
+                <div class="col-4">
+                  <div class="stat-item">
+                    <h5 class="mb-0">0</h5>
+                    <small class="text-muted">Reviews</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="stat-item">
+                    <h5 class="mb-0">
+                      New
+                      <i
+                        class="fas fa-star text-warning"
+                        style="font-size: 0.8em"
+                      ></i>
+                    </h5>
+                    <small class="text-muted">Rating</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="stat-item">
+                    <h5 class="mb-0">1</h5>
+                    <small class="text-muted">Years hosting</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Host Information Column -->
+        <div class="col-md-8">
+          <!-- Host Details -->
+          <div class="mb-4">
+            <h5>Host details</h5>
+            <div class="host-details">
+              <p class="mb-2">
+                <strong>Response rate:</strong> New host
+              </p>
+              <p class="mb-2">
+                <strong>Response time:</strong> Usually responds quickly
+              </p>
+              <% if (showdata.owner && showdata.owner.email) { %>
+              <p class="mb-2">
+                <strong>Contact:</strong> 
+                <span class="text-muted">Available through platform messaging</span>
+              </p>
+              <% } %>
+            </div>
+          </div>
+
+          <!-- Default Host Bio -->
+          <div class="mb-4">
+            <p class="host-bio">
+             <small>Hello! I'm <%= showdata.owner ? showdata.owner.username : 'your host' %>, 
+              and I'm excited to share my space with you. I'm passionate about providing 
+              comfortable accommodations and ensuring guests have a great stay. 
+              Feel free to reach out if you have any questions about the listing or the area!</small> 
+            </p>
+          </div>
+
+          <!-- Host Work & Fun Facts (Static for now) -->
+          <div class="host-info mb-4">
+            <div class="mb-2">
+              <i class="fas fa-home me-2"></i>
+              <strong>Hosting style:</strong> Welcoming and responsive
+            </div>
+            <div class="mb-2">
+              <i class="fas fa-lightbulb me-2"></i>
+              <strong>Fun fact:</strong> New to hosting but excited to meet travelers!
+            </div>
+          </div>
+
+          <!-- Message Host Button -->
+          <button class="btn btn-outline-dark" onclick="showMessageModal()">
+            Message host
+          </button>
+
+          <!-- Security Notice -->
+          <div
+            class="mt-4 p-3"
+            style="background-color: #f8f9fa; border-radius: 8px"
+          >
+            <div class="d-flex align-items-center">
+              <div class="me-3">
+                <i
+                  class="fas fa-shield-alt text-danger"
+                  style="font-size: 1.5em"
+                ></i>
+              </div>
+              <small class="text-muted">
+               <b> To help protect your payment, always use the platform to
+                send money and communicate with hosts.</b>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- Message Host Modal -->
+<div class="modal fade" id="messageHostModal" tabindex="-1" aria-labelledby="messageHostModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageHostModalLabel">
+          Message <%= showdata.owner ? showdata.owner.username : 'Host' %>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/listing/<%= showdata._id %>/message" method="POST">
+          <div class="mb-3">
+            <label for="messageText" class="form-label">Your message:</label>
+            <textarea 
+              class="form-control" 
+              id="messageText" 
+              name="message" 
+              rows="4" 
+              placeholder="Write your message to the host..."
+              required
+            ></textarea>
+          </div>
+          <input type="hidden" name="hostId" value="<%= showdata.owner ? showdata.owner._id : '' %>">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="sendMessage()">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
   <!-- here is code of the vladiation of bootsrap -->
 </body>
+
+
+<script>
+  function showMessageModal() {
+    var messageModal = new bootstrap.Modal(document.getElementById('messageHostModal'));
+    messageModal.show();
+  }
+
+  function sendMessage() {
+    const form = document.querySelector('#messageHostModal form');
+    const messageText = document.getElementById('messageText').value.trim();
+    
+    if (messageText) {
+      form.submit();
+    } else {
+      alert('Please enter a message before sending.');
+    }
+  }
+</script>
+    <!-- End Host Section -->
+  </div>

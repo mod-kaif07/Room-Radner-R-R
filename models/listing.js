@@ -42,6 +42,10 @@ const listingSchema = new mongoose.Schema(
       maxLength: 100,
     },
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
+    owner:{
+      type:Schema.Types.ObjectId,
+      ref:"User"
+    },
   },
   { timestamps: true }
 );
