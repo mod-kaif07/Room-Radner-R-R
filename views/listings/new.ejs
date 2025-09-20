@@ -7,6 +7,7 @@
     method="POST"
     action="/listing"
     class="row g-3 needs-validation"
+    enctype="multipart/form-data"
     novalidate
   >
     <!-- Title -->
@@ -40,14 +41,16 @@
 
     <!-- Image -->
     <div class="mb-3">
-      <label for="image" class="form-label">Image URL/Link</label>
+      <label for="image" class="form-label">Upload Image</label>
       <input
-        type="url"
+        type="file"
         class="form-control"
         id="image"
-        name="listing[image][url]"
-        placeholder="Enter image URL"
+        name="listing[image]"
+        required
+        placeholder="Upload Image"
       />
+
       <div class="invalid-feedback">Make Sure Image url is valid</div>
     </div>
 

@@ -43,10 +43,12 @@
         <!-- <a class="nav-link active" aria-current="page" href="/">Home</a> -->
         <a class="nav-link" href="#">Search Rooms</a>
         <a class="nav-link" href="#">Nearby Rooms</a>
-        <a class="nav-link" href="/listing">Rooms</a>
+      <a class="nav-link d-flex flex-column align-items-center" href="/listing">
+         <img src="/images/roome.png" alt="add room" style="height: 35px" />
+         <span class="text-muted" style="font-size: 9px">Add Room</span>
         <a class="nav-link d-flex flex-column align-items-center" href="/listing/addnew?">
          <img src="/images/listing room.png" alt="Login" style="height: 35px" />
-         <span class="text-muted" style="font-size: 12px">Add Room</span>
+         <span class="text-muted" style="font-size: 9px">Add Room</span>
         <% if (!currentUser) { %>
         <!-- Show when not logged in -->
         <a class="nav-link d-flex flex-column align-items-center" href="/login">

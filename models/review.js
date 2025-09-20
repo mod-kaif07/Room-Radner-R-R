@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const reviewSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  comment: {
+ comment: {
     type: String,
     required: true,
   },
@@ -16,9 +12,13 @@ const reviewSchema = new mongoose.Schema({
     max: 5,
     required: true,
   },
-  createdAt: {
+   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  author:{
+    type:Schema.Types.ObjectId,
+    ref:"User",
   },
 });
 

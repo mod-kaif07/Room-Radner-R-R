@@ -15,16 +15,8 @@ const listingSchema = new mongoose.Schema(
       maxLength: 500,
     },
     image: {
-      filename: {
-        type: String,
-        default: "listingimage",
-      },
-      url: {
-        type: String,
-        default:
-          "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=800&q=60",
-        match: /^https?:\/\/.+/i, // just check it's a URL
-      },
+     url:String,
+     filename:String,
     },
     price: {
       type: Number,
