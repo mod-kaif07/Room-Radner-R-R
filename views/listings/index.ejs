@@ -1,57 +1,6 @@
 <% layout('/layouts/boilerplate') -%>
 <body>
-  <div class="filter-container">
-    <div class="filter-header">
-      <h1 class="filter-title">Find Your Perfect Room</h1>
-      <p class="filter-subtitle">
-        Choose from our variety of accommodation types
-      </p>
-    </div>
-    <div id="filters">
-      <div class="filter" data-filter="1bhk">
-        <img src="/images/1bhk.png" alt="1 BHK Room" />
-        <p>1 BHK</p>
-      </div>
-      <div class="filter" data-filter="dormitory">
-        <img src="/images/dormentry.png" alt="Dormitory Room" />
-        <p>Dormitory</p>
-      </div>
-      <div class="filter" data-filter="pg">
-        <img src="/images/pg.png" alt="PG Room" />
-        <p>PG Room</p>
-      </div>
-      <div class="filter" data-filter="private-single">
-        <img src="/images/privatesingleroom.png" alt="Private Single Room" />
-        <p>Private Single</p>
-      </div>
-      <div class="filter" data-filter="shared">
-        <img src="/images/shared_room.png" alt="Shared Room" />
-        <p>Shared Room</p>
-      </div>
-      <div class="filter" data-filter="single-bed">
-        <img src="/images/single-bed.png" alt="Single Bed Room" />
-        <p>Single Bed</p>
-      </div>
-      <div class="filter" data-filter="studio">
-        <img src="/images/Studio Room.png" alt="Studio Room" />
-        <p>Studio Room</p>
-      </div>
-      <div class="filter" data-filter="studio">
-        <img src="/images/Service Apprtemnt.png" alt="Serve Apprtemnt" />
-        <p>Service Apartments</p>
-      </div>
-      <div class="filter" data-filter="studio">
-        <img src="/images/BudgetRoom.png" alt="Budget Room" />
-        <p>Budget Room</p>
-      </div>
-      <div class="filter" data-filter="studio">
-        <img src="/images/premium.png" alt="Premium room" />
-        <p>premium Room</p>
-      </div>
-    </div>
-    <div class="scroll-hint">← Swipe to see more options →</div>
-  </div>
-
+  <%- include('../includes/categorypage.ejs') %>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     <% for (let listing of allListing) { %>
     <a href="/listing/<%=listing._id %>">
@@ -69,7 +18,7 @@
           <p class="card-text">
             <b> <%= listing.title %> </b> <br />
             &#8377;<%= listing.price.toLocaleString("en-IN")%>/Month<br />
-            <%=listing.location%>
+             <%=listing.address%>
           </p>
         </div>
       </div>
@@ -77,88 +26,4 @@
     <% } %>
   </div>
 </body>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const filters = document.querySelectorAll(".filter");
-    const filtersContainer = document.getElementById("filters");
-    const scrollHint = document.querySelector(".scroll-hint");
-
-    // Filter click functionality
-    filters.forEach((filter) => {
-      filter.addEventListener("click", function () {
-        // Remove active class from all filters
-        filters.forEach((f) => f.classList.remove("active"));
-
-        // Add active class to clicked filter
-        this.classList.add("active");
-
-        // Get filter type
-        const filterType = this.getAttribute("data-filter");
-
-        // You can add your filtering logic here
-        // For example, trigger a function to filter rooms
-        // filterRooms(filterType);
-      });
-    });
-
-    // Touch/swipe functionality for mobile
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    filtersContainer.addEventListener("mousedown", (e) => {
-      isDown = true;
-      startX = e.pageX - filtersContainer.offsetLeft;
-      scrollLeft = filtersContainer.scrollLeft;
-      filtersContainer.style.cursor = "grabbing";
-    });
-
-    filtersContainer.addEventListener("mouseleave", () => {
-      isDown = false;
-      filtersContainer.style.cursor = "grab";
-    });
-
-    filtersContainer.addEventListener("mouseup", () => {
-      isDown = false;
-      filtersContainer.style.cursor = "grab";
-    });
-
-    filtersContainer.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - filtersContainer.offsetLeft;
-      const walk = (x - startX) * 2;
-      filtersContainer.scrollLeft = scrollLeft - walk;
-    });
-
-    // Hide scroll hint after interaction
-    filtersContainer.addEventListener(
-      "scroll",
-      () => {
-        if (scrollHint) {
-          scrollHint.style.opacity = "0";
-          setTimeout(() => {
-            scrollHint.style.display = "none";
-          }, 300);
-        }
-      },
-      { once: true }
-    );
-
-    // Check if scrolling is needed and show/hide hint
-    function checkScrollable() {
-      if (filtersContainer.scrollWidth > filtersContainer.clientWidth) {
-        if (scrollHint) scrollHint.style.display = "block";
-      } else {
-        if (scrollHint) scrollHint.style.display = "none";
-      }
-    }
-
-    // Check on load and resize
-    checkScrollable();
-    window.addEventListener("resize", checkScrollable);
-
-    // Optional: Set first filter as active by default
-    // filters[0].classList.add('active');
-  });
-</script>
+<script src="/js/filter.js"></script>

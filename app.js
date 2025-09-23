@@ -11,6 +11,7 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
 // const { console } = require("inspector");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local"); // ✅ correct name
@@ -20,8 +21,21 @@ const listingRoutes = require("./routes/listings.js");
 const reviewRoutes = require("./routes/review.js");
 const userRoutes = require("./routes/user.js");
 
+const dbUrl = process.env.ATLAS_URL;
+const mongoUrl = "mongodb://127.0.0.1:27017/airbnb";
+
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret:process.env.SECRET,
+  },
+  touchAfter: 24 * 3600, // 24 hours
+});
+store.on("error", () => {
+  console.log("ERROR in MONGO SESSION STORE", err);
+});
 let sessionOption = {
-  secret: "keyboard cat",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
 };
@@ -34,7 +48,7 @@ main()
   })
   .catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/airbnb");
+  await mongoose.connect(dbUrl);
 }
 
 app.use(express.urlencoded({ extended: true }));
@@ -42,6 +56,7 @@ app.use(methodOverride("_method"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(session(sessionOption));

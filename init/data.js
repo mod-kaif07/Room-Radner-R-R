@@ -8,8 +8,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1500,
-    location: "Malibu",
+    address: "Malibu",
     country: "United States",
+    subCategory: "Private Single Room",
+    location: {
+      type: "Point",
+      coordinates: [-118.6919, 34.0259],
+    },
   },
   {
     title: "Modern Loft in Downtown",
@@ -20,8 +25,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1200,
-    location: "New York City",
+    address: "New York City",
     country: "United States",
+    subCategory: "1 BHK Apartment",
+    location: {
+      type: "Point",
+      coordinates: [-74.0060, 40.7128],
+    },
   },
   {
     title: "Mountain Retreat",
@@ -32,8 +42,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1000,
-    location: "Aspen",
+    address: "Aspen",
     country: "United States",
+    subCategory: "Single Room",
+    location: {
+      type: "Point",
+      coordinates: [-106.8367, 39.1911],
+    },
   },
   {
     title: "Historic Villa in Tuscany",
@@ -44,8 +59,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 2500,
-    location: "Florence",
+    address: "Florence",
     country: "Italy",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [11.2558, 43.7696],
+    },
   },
   {
     title: "Secluded Treehouse Getaway",
@@ -56,8 +76,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 800,
-    location: "Portland",
+    address: "Portland",
     country: "United States",
+    subCategory: "Shared Room",
+    location: {
+      type: "Point",
+      coordinates: [-122.6784, 45.5152],
+    },
   },
   {
     title: "Beachfront Paradise",
@@ -68,8 +93,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 2000,
-    location: "Cancun",
+    address: "Cancun",
     country: "Mexico",
+    subCategory: "Service Apartment",
+    location: {
+      type: "Point",
+      coordinates: [-86.8515, 21.1619],
+    },
   },
   {
     title: "Rustic Cabin by the Lake",
@@ -80,8 +110,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 900,
-    location: "Lake Tahoe",
+    address: "Lake Tahoe",
     country: "United States",
+    subCategory: "Studio Room",
+    location: {
+      type: "Point",
+      coordinates: [-120.0324, 39.0968],
+    },
   },
   {
     title: "Luxury Penthouse with City Views",
@@ -92,8 +127,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 3500,
-    location: "Los Angeles",
+    address: "Los Angeles",
     country: "United States",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [-118.2437, 34.0522],
+    },
   },
   {
     title: "Ski-In/Ski-Out Chalet",
@@ -104,8 +144,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 3000,
-    location: "Verbier",
+    address: "Verbier",
     country: "Switzerland",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [7.2284, 46.0964],
+    },
   },
   {
     title: "Safari Lodge in the Serengeti",
@@ -116,8 +161,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 4000,
-    location: "Serengeti National Park",
+    address: "Serengeti National Park",
     country: "Tanzania",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [34.8333, -2.3333],
+    },
   },
   {
     title: "Historic Canal House",
@@ -128,8 +178,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1800,
-    location: "Amsterdam",
+    address: "Amsterdam",
     country: "Netherlands",
+    subCategory: "Co-living Room",
+    location: {
+      type: "Point",
+      coordinates: [4.9041, 52.3676],
+    },
   },
   {
     title: "Private Island Retreat",
@@ -140,8 +195,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 10000,
-    location: "Fiji",
+    address: "Fiji",
     country: "Fiji",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [177.4760, -17.7134],
+    },
   },
   {
     title: "Charming Cottage in the Cotswolds",
@@ -152,8 +212,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1200,
-    location: "Cotswolds",
+    address: "Cotswolds",
     country: "United Kingdom",
+    subCategory: "Standard Room",
+    location: {
+      type: "Point",
+      coordinates: [-1.8094, 51.8330],
+    },
   },
   {
     title: "Historic Brownstone in Boston",
@@ -164,8 +229,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 2200,
-    location: "Boston",
+    address: "Boston",
     country: "United States",
+    subCategory: "1 BHK Apartment",
+    location: {
+      type: "Point",
+      coordinates: [-71.0589, 42.3601],
+    },
   },
   {
     title: "Beachfront Bungalow in Bali",
@@ -176,8 +246,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1800,
-    location: "Bali",
+    address: "Bali",
     country: "Indonesia",
+    subCategory: "Private Single Room",
+    location: {
+      type: "Point",
+      coordinates: [115.0920, -8.4095],
+    },
   },
   {
     title: "Mountain View Cabin in Banff",
@@ -188,8 +263,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1500,
-    location: "Banff",
+    address: "Banff",
     country: "Canada",
+    subCategory: "Single Room",
+    location: {
+      type: "Point",
+      coordinates: [-115.5708, 51.1784],
+    },
   },
   {
     title: "Art Deco Apartment in Miami",
@@ -200,8 +280,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1600,
-    location: "Miami",
+    address: "Miami",
     country: "United States",
+    subCategory: "Shared Apartment",
+    location: {
+      type: "Point",
+      coordinates: [-80.1918, 25.7617],
+    },
   },
   {
     title: "Tropical Villa in Phuket",
@@ -212,8 +297,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 3000,
-    location: "Phuket",
+    address: "Phuket",
     country: "Thailand",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [98.3923, 7.8804],
+    },
   },
   {
     title: "Historic Castle in Scotland",
@@ -224,8 +314,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1551524164-687a55dd1126?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 4000,
-    location: "Scottish Highlands",
+    address: "Scottish Highlands",
     country: "United Kingdom",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [-4.2026, 57.2790],
+    },
   },
   {
     title: "Desert Oasis in Dubai",
@@ -236,8 +331,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 5000,
-    location: "Dubai",
+    address: "Dubai",
     country: "United Arab Emirates",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [55.2708, 25.2048],
+    },
   },
   {
     title: "Rustic Log Cabin in Montana",
@@ -248,8 +348,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1587061949409-02df41d5e562?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1100,
-    location: "Montana",
+    address: "Montana",
     country: "United States",
+    subCategory: "Studio Room",
+    location: {
+      type: "Point",
+      coordinates: [-110.3626, 46.8059],
+    },
   },
   {
     title: "Beachfront Villa in Greece",
@@ -260,8 +365,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 2500,
-    location: "Mykonos",
+    address: "Mykonos",
     country: "Greece",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [25.3289, 37.4415],
+    },
   },
   {
     title: "Eco-Friendly Treehouse Retreat",
@@ -272,8 +382,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 750,
-    location: "Costa Rica",
+    address: "Costa Rica",
     country: "Costa Rica",
+    subCategory: "Budget Room",
+    location: {
+      type: "Point",
+      coordinates: [-83.7534, 9.7489],
+    },
   },
   {
     title: "Historic Cottage in Charleston",
@@ -284,8 +399,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1600,
-    location: "Charleston",
+    address: "Charleston",
     country: "United States",
+    subCategory: "Standard Room",
+    location: {
+      type: "Point",
+      coordinates: [-79.9311, 32.7765],
+    },
   },
   {
     title: "Modern Apartment in Tokyo",
@@ -296,8 +416,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 2000,
-    location: "Tokyo",
+    address: "Tokyo",
     country: "Japan",
+    subCategory: "1 BHK Apartment",
+    location: {
+      type: "Point",
+      coordinates: [139.6917, 35.6895],
+    },
   },
   {
     title: "Lakefront Cabin in New Hampshire",
@@ -308,8 +433,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1200,
-    location: "New Hampshire",
+    address: "New Hampshire",
     country: "United States",
+    subCategory: "Single Room",
+    location: {
+      type: "Point",
+      coordinates: [-71.5376, 43.1939],
+    },
   },
   {
     title: "Luxury Villa in the Maldives",
@@ -320,8 +450,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 6000,
-    location: "Maldives",
+    address: "Maldives",
     country: "Maldives",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [73.2207, 3.2028],
+    },
   },
   {
     title: "Ski Chalet in Aspen",
@@ -332,8 +467,13 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 4000,
-    location: "Aspen",
+    address: "Aspen",
     country: "United States",
+    subCategory: "Premium Room",
+    location: {
+      type: "Point",
+      coordinates: [-106.8367, 39.1911],
+    },
   },
   {
     title: "Secluded Beach House in Costa Rica",
@@ -344,9 +484,15 @@ const sampleListings = [
       url: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
     },
     price: 1800,
-    location: "Costa Rica",
+    address: "Costa Rica",
     country: "Costa Rica",
+    subCategory: "Private Single Room",
+    location: {
+      type: "Point",
+      coordinates: [-83.7534, 9.7489],
+    },
   },
 ];
+
 
 module.exports = { data: sampleListings };

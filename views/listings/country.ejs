@@ -1,0 +1,89 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="country_container mb-2">
+  <!-- Header Section -->
+  <div class="country_header">
+    <h1 class="country_title">
+      <%= allListing.length > 0 ? allListing[0].country : "No Country Found" %>
+    </h1>
+
+    <p class="country_subtitle">
+      Explore amazing properties in your preferred country
+    </p>
+    <hr class="country_divider" />
+  </div>
+
+  <% if (allListing.length) { %>
+  <!-- Listings Grid -->
+  <div class="country_listings_grid">
+    <% for (let listing of allListing) { %>
+    <div class="country_listing_card">
+      <!-- Image Container with Overlay -->
+      <div class="country_image_container">
+        <img
+          src="<%= listing.image.url %>"
+          class="country_listing_image"
+          alt="<%= listing.title %>"
+        />
+
+        <!-- Country Badge -->
+        <span class="country_badge"><%= listing.country %></span>
+
+        <!-- Price Badge -->
+        <% if (listing.price) { %>
+        <span class="country_price_badge">
+          &#8377;<%= listing.price.toLocaleString() %>
+        </span>
+        <% } %>
+      </div>
+
+      <!-- Card Body -->
+      <div class="country_card_body">
+        <!-- Title -->
+        <h5 class="country_card_title"><%= listing.title %></h5>
+
+        <!-- Location with Icon -->
+        <div class="country_location">
+          <i class="fas fa-map-marker-alt country_location_icon"></i>
+          <span> <%= listing.address || 'Location not specified' %> </span>
+        </div>
+
+        <!-- Description -->
+        <% if (listing.description) { %>
+        <p class="country_description">
+          <%= listing.description.length > 100 ?
+          listing.description.substring(0, 100) + '...' : listing.description %>
+        </p>
+        <% } %>
+
+        <!-- Action Button -->
+        <a href="/listing/<%= listing._id %>" class="country_view_button">
+          <i class="fas fa-eye"></i> View Details
+        </a>
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+  <!-- Results Count -->
+  <div class="country_results_count">
+    <p>Showing <%= allListing.length %> listings</p>
+  </div>
+
+  <% } else { %>
+  <!-- Empty State -->
+  <div class="country_empty_state">
+    <div class="country_empty_icon">
+      <i class="fas fa-search"></i>
+    </div>
+    <h3 class="country_empty_title">No listings found</h3>
+    <p class="country_empty_message">
+      No listings are available for this country at the moment.
+    </p>
+    <button onclick="history.back()" class="btn btn-secondary">
+      ← Go Back
+    </button>
+    <a href="/listing/addnew" class="btn btn_country_page">Want to Add</a>
+  </div>
+  <% } %>
+</div>

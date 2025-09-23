@@ -47,11 +47,12 @@
         class="form-control"
         id="image"
         name="listing[image]"
+        accept="image/*"
         required
-        placeholder="Upload Image"
       />
-
-      <div class="invalid-feedback">Make Sure Image url is valid</div>
+      <div class="invalid-feedback" id="imageFeedback">
+        Make sure the image is valid and does not exceed 2MB
+      </div>
     </div>
 
     <!-- Price & Country (same row) -->
@@ -89,11 +90,50 @@
         type="String"
         class="form-control"
         id="location"
-        name="listing[location]"
-        placeholder="Enter location"
+        name="listing[address]"
+        placeholder="Enter Complete Address"
         required
       />
       <div class="invalid-feedback">Make sure Location is Valid</div>
+    </div>
+
+    <!-- Add SubCategory -->
+    <div class="mb-3">
+      <label for="subCategory" class="form-label">Room Category</label>
+      <select
+        class="form-select"
+        id="subCategory"
+        name="listing[subCategory]"
+        required
+      >
+        <option value="">Choose a category...</option>
+
+        <!-- Student Categories -->
+        <optgroup label="Student Categories">
+          <option value="Shared Room">Shared Room</option>
+          <option value="Single Room">Single Room</option>
+          <option value="Dormitory">Dormitory</option>
+          <option value="Studio Room">Studio Room</option>
+          <option value="PG">PG (Paying Guest)</option>
+        </optgroup>
+
+        <!-- Working Professional Categories -->
+        <optgroup label="Working Professional Categories">
+          <option value="Private Single Room">Private Single Room</option>
+          <option value="Co-living Room">Co-living Room</option>
+          <option value="1 BHK Apartment">1 BHK Apartment</option>
+          <option value="Shared Apartment">Shared Apartment</option>
+          <option value="Service Apartment">Service Apartment</option>
+        </optgroup>
+
+        <!-- Universal Categories -->
+        <optgroup label="Universal Categories">
+          <option value="Budget Room">Budget Room</option>
+          <option value="Standard Room">Standard Room</option>
+          <option value="Premium Room">Premium Room</option>
+        </optgroup>
+      </select>
+      <div class="invalid-feedback">Please select a room category</div>
     </div>
 
     <!-- Submit Button -->
@@ -103,3 +143,22 @@
     <!-- <button type="" class="bbtn btn-primary btn-sm">Add</button> -->
   </form>
 </div>
+
+<script>
+  document.getElementById("image").addEventListener("change", function (e) {
+    const file = e.target.files[0];
+    const maxSize = 2 * 1024 * 1024; // 2MB in bytes
+
+    if (file && file.size > maxSize) {
+      e.target.setCustomValidity("Image size exceeds 2MB");
+      document.getElementById("imageFeedback").textContent =
+        "Image size exceeds 2MB. Please upload a smaller file.";
+      e.target.classList.add("is-invalid");
+    } else {
+      e.target.setCustomValidity("");
+      e.target.classList.remove("is-invalid");
+      document.getElementById("imageFeedback").textContent =
+        "Make sure the image is valid and does not exceed 2MB";
+    }
+  });
+</script>

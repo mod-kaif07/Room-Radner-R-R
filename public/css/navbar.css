@@ -1,0 +1,161 @@
+.custom-navbar {
+  /* Base styling */
+  background-color: #ffffff;
+  border-radius: 20px;
+  margin-top: 5px;
+
+  /* Enhanced borders and shadows */
+  border: 1px solid #e5e7eb;
+  border-bottom: 2px solid #d1d5db;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  /* Smooth transitions */
+  transition: all 0.3s ease;
+
+  /* Typography */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Layout improvements */
+  padding: 0.75rem 1.5rem;
+  position: relative;
+  z-index: 100;
+}
+
+/* Hover effects */
+.custom-navbar:hover {
+  box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+  border-bottom-color: #9ca3af;
+}
+
+/* Active/focused state */
+.custom-navbar:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .custom-navbar {
+    border-radius: 15px;
+    margin: 5px 10px;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Optional: Glass effect variant */
+.custom-navbar.glass-effect {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Optional: Minimal variant */
+.custom-navbar.minimal {
+  border: none;
+  border-bottom: 1px solid #f3f4f6;
+  border-radius: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar content styling */
+.custom-navbar .navbar-brand {
+  color: #1f2937;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.custom-navbar .nav-link {
+  color: #4b5563;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #1f2937;
+  background-color: #f9fafb;
+}
+
+.custom-navbar .nav-link.active {
+  color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.brand-text {
+  font-size: 1.2rem;
+  color: #111;
+}
+
+.nav-link {
+  color: #222 !important;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #000 !important;
+}
+
+.nav-icon {
+  height: 33px;
+  width: 35px;
+  margin-bottom: 2px;
+  transition: all 0.3s ease-in-out;
+  transition: filter 0.2s;
+}
+
+.nav-link:hover .nav-icon {
+  filter: grayscale(0%) brightness(1);
+  height: 35px;
+  width: 37px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-text {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.username {
+  font-size: 0.4rem;
+  color: #888;
+}
+
+/* Logo Animation */
+.logo-animate {
+  height: 55px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.searchBoxOuter {
+  margin-left: 30%;
+}
+.searchBox {
+  border-radius: 30px;
+}
+
+.nearby {
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  border-radius: 50%;
+}
+.nearby:hover {
+  width: 58px;
+  height: 53px;
+  transition: all 0.3s ease-in-out;
+}

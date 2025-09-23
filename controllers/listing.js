@@ -1,4 +1,7 @@
 const listing_dat = require("../models/listing.js");
+const mbxGeoCoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapToken = process.env.MAP_API;
+const geoCodingClient = mbxGeoCoding({ accessToken: mapToken });
 
 module.exports.aboutSection = (req, res) => {
   res.render("listings/about");
@@ -32,12 +35,21 @@ module.exports.showDetails = async (req, res) => {
 };
 
 module.exports.createPost = async (req, res, next) => {
+  let resposne = await geoCodingClient
+    .forwardGeocode({
+      query: req.body.listing.address,
+      limit: 1,
+    })
+    .send();
+
   let url = req.file.path;
   let filename = req.file.filename;
   const newlistingdata = new listing_dat(req.body.listing);
   newlistingdata.owner = req.user._id;
   newlistingdata.image = { url, filename };
-  await newlistingdata.save();
+  newlistingdata.location = resposne.body.features[0].geometry;
+  let savedlisting = await newlistingdata.save();
+
   req.flash("success", "Listing Added Successfully.");
   res.redirect("/listing");
 };
@@ -84,4 +96,44 @@ module.exports.deleteListing = async (req, res) => {
   const find_id_delete = await listing_dat.findByIdAndDelete(id);
   req.flash("success", "Listing Deleted Successfully.");
   res.redirect("/listing");
+};
+
+module.exports.filter = async (req, res, next) => {
+  try {
+    // console.log("Filter route hit:", req.method, req.url, req.body); // Debugging
+    const { subCategory } = req.body;
+
+    if (!subCategory) {
+      req.flash("error", "Please select a valid room category.");
+      return res.redirect("/listing");
+    }
+
+    const listings = await listing_dat
+      .find({ subCategory: subCategory })
+      .populate("owner");
+
+    res.render("listings/category", {
+      allListing: listings,
+      subCategory,
+    });
+  } catch (err) {
+    console.error("Error in filter:", err); // Debugging
+    next(new ExpressError(500, "An error occurred while filtering listings."));
+  }
+};
+
+module.exports.filter_country = async (req, res, next) => {
+  let { country } = req.body;
+  if (!country) {
+    req.flash("error", "Mention Country Name ");
+    return res.redirect("/listing");
+  }
+  const CountryListing = await listing_dat
+    .find({
+      country: { $regex: new RegExp(country, "i") }, // case-insensitive search
+    })
+    .populate("owner");
+  res.render("listings/country", {
+    allListing: CountryListing,
+  });
 };

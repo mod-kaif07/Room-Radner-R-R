@@ -1,0 +1,112 @@
+body {
+  background: #ffffff;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+   
+  justify-content: center;
+  align-items: center;
+}
+
+.sing_container {
+  width: 400px;
+  margin-top: 40px;
+  padding: 40px;
+  border-radius: 18px;
+  background:  #ffffff;
+  color: #151414;
+  margin-left: 33%;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.08);
+}
+
+.sing_title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  font-size: 22px;
+}
+
+.sing_input {
+  width: 100%;
+  border-radius: 12px;
+  padding: 12px 15px;
+  font-size: 15px;
+  background: #fefdfd;
+  border: 1px solid #333;
+  color: #000000;
+  margin-bottom: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.sing_input:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.sing_btn {
+  background: #353434;
+  color: #faf8f8;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  width: 50%;
+  text-align: center;
+  transition: 0.3s;
+  display: block;      /* ensures margin works */
+  margin: 10px auto 0; 
+}
+
+.sing_btn:hover {
+  background: #cec9c9;
+  color: black;
+  transform: translateY(-2px);
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.sing_footer {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.sing_footer a {
+  color: #141313;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+
+/* 📱 Responsive adjustments */
+  @media (max-width: 768px) {
+    .sing_container {
+      padding: 25px;
+    }
+    .sing_title {
+      font-size: 20px;
+    }
+    .sing_input {
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+    .sing_btn {
+      font-size: 15px;
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sing_container {
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .sing_title {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .sing_footer {
+      font-size: 13px;
+    }
+  }

@@ -1,58 +1,82 @@
 <% layout('/layouts/boilerplate') -%>
 
-<div class="row mt-3" style="margin-bottom: 35vh;">
-  <div class="col-6 offset-3">
-    <div>
-      <h2>Welcome Back to RoomRander R|R</h2>
+<div class="login_container">
+  <div class="login_card">
+    <!-- Geometric Pattern Header -->
+    <div class="login_header">
+      <div class="login_geometric_pattern"></div>
+      <div class="login_logo">
+        <img src="images/mainlogo.png" alt="Website Logo" />
+      </div>
     </div>
-    <form class="needs-validation" novalidate method="post" action="/login">
-      
-      <!-- Username -->
-      <div class="mb-3">
-        <label for="username" class="form-label">UserName</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          id="username" 
-          name="username" 
-          required 
-        />
-        <div class="invalid-feedback">Please enter your username.</div>
-      </div>
 
-      <!-- Password -->
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input 
-          type="password" 
-          class="form-control" 
-          id="password" 
-          name="password" 
-          required 
-          minlength="6"
-        />
-        <div class="invalid-feedback">Please enter your password.</div>
-      </div>
+    <!-- Form Section -->
+    <div class="login_form_section">
+      <h2 class="login_title">Login</h2>
 
+      <form
+        class="login_form needs-validation"
+        novalidate
+        method="post"
+        action="/login"
+      >
+        <!-- Email -->
+        <div class="login_field">
+          <label for="username" class="login_label">Username</label>
+          <input
+            type="text"
+            class="login_input"
+            id="username"
+            name="username"
+            placeholder="username"
+            required
+          />
+          <div class="login_error">Please enter your email.</div>
+        </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <!-- Password -->
+        <div class="login_field">
+          <label for="password" class="login_label">Password</label>
+          <input
+            type="password"
+            class="login_input"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+            minlength="6"
+          />
+          <div class="login_error">Please enter your password.</div>
+        </div>
+
+        <button type="submit" class="login_button">Login</button>
+
+        <div class="login_footer">
+          <span class="login_footer_text">Don't have an account?</span>
+          <a href="/register" class="login_footer_link">Sign Up</a>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
-<!-- Bootstrap Validation Script -->
+<!-- Validation Script -->
 <script>
   (() => {
     "use strict";
     const forms = document.querySelectorAll(".needs-validation");
-    Array.from(forms).forEach(form => {
-      form.addEventListener("submit", event => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add("was-validated");
-      }, false);
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
     });
   })();
 </script>

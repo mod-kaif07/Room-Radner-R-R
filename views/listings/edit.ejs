@@ -46,9 +46,9 @@
             Looks good — users will understand your listing better
           </div>
         </div>
-        
+
         <div style="margin: 0; padding: 20px; background: #f8f9fa">
-           <small for="img">Last Uploaded image</small>
+          <small for="img">Last Uploaded image</small>
           <div
             style="
               width: 300px;
@@ -128,8 +128,8 @@
             type="text"
             class="form-control"
             id="location"
-            name="listing[location]"
-            value="<%= editable_data.location %>"
+            name="listing[address]"
+            value="<%= editable_data.address %>"
             required
           />
           <div class="invalid-feedback">
@@ -138,6 +138,47 @@
           <div class="valid-feedback">
             Perfect — users can now find your listing easily.
           </div>
+        </div>
+
+        <!-- //categoy edits -->
+        <div class="mb-3">
+          <label for="subCategory" class="form-label">Room Category</label>
+          <select
+            class="form-select"
+            id="subCategory"
+            name="listing[subCategory]"
+            required
+          >
+            <option value="<%= editable_data.subCategory %>" selected>
+              Your Previous Category: <%= editable_data.subCategory %>
+            </option>
+
+            <!-- Student Categories -->
+            <optgroup label="Student Categories">
+              <option value="Shared Room">Shared Room</option>
+              <option value="Single Room">Single Room</option>
+              <option value="Dormitory">Dormitory</option>
+              <option value="Studio Room">Studio Room</option>
+              <option value="PG">PG (Paying Guest)</option>
+            </optgroup>
+
+            <!-- Working Professional Categories -->
+            <optgroup label="Working Professional Categories">
+              <option value="Private Single Room">Private Single Room</option>
+              <option value="Co-living Room">Co-living Room</option>
+              <option value="1 BHK Apartment">1 BHK Apartment</option>
+              <option value="Shared Apartment">Shared Apartment</option>
+              <option value="Service Apartment">Service Apartment</option>
+            </optgroup>
+
+            <!-- Universal Categories -->
+            <optgroup label="Universal Categories">
+              <option value="Budget Room">Budget Room</option>
+              <option value="Standard Room">Standard Room</option>
+              <option value="Premium Room">Premium Room</option>
+            </optgroup>
+          </select>
+          <div class="invalid-feedback">Please select a room category</div>
         </div>
 
         <!-- Submit -->

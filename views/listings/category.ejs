@@ -1,0 +1,86 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="category_container mb-2" >
+  <!-- Header Section -->
+  <div class="category_header">
+    <h1 class="category_title">Filtered Listings</h1>
+    <p class="category_subtitle">
+      Discover amazing properties in your preferred category
+    </p>
+    <hr class="category_divider" />
+  </div>
+
+  <% if (allListing.length) { %>
+  <!-- Listings Grid -->
+  <div class="category_listings_grid">
+    <% for (let listing of allListing) { %>
+    <div class="category_listing_card">
+      <!-- Image Container with Overlay -->
+      <div class="category_image_container">
+        <img
+          src="<%= listing.image.url %>"
+          class="category_listing_image"
+          alt="<%= listing.title %>"
+        />
+
+        <!-- Category Badge -->
+        <span class="category_badge"> <%= listing.subCategory %> </span>
+
+        <!-- Price Badge -->
+        <% if (listing.price) { %>
+        <span class="category_price_badge">
+          &#8377;<%= listing.price.toLocaleString() %>
+        </span>
+        <% } %>
+      </div>
+
+      <!-- Card Body -->
+      <div class="category_card_body">
+        <!-- Title -->
+        <h5 class="category_card_title"><%= listing.title %></h5>
+
+        <!-- Location with Icon -->
+        <div class="category_location">
+          <i class="fas fa-map-marker-alt category_location_icon"></i>
+          <span> <%= listing.address || 'Location not specified' %> </span>
+        </div>
+
+        <!-- Description (if available) -->
+        <% if (listing.description) { %>
+        <p class="category_description">
+          <%= listing.description.length > 100 ?
+          listing.description.substring(0, 100) + '...' : listing.description %>
+        </p>
+        <% } %>
+
+        <!-- Action Button -->
+        <a href="/listing/<%= listing._id %>" class="category_view_button">
+          <i class="fas fa-eye"></i>View Details
+        </a>
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+  <!-- Results Count -->
+  <div class="category_results_count">
+    <p>Showing <%= allListing.length %> listings</p>
+  </div>
+
+  <% } else { %>
+  <!-- Empty State -->
+  <div class="category_empty_state">
+    <div class="category_empty_icon">
+      <i class="fas fa-search"></i>
+    </div>
+    <h3 class="category_empty_title">No listings found</h3>
+    <p class="category_empty_message">
+      No listings are available for this category at the moment.
+    </p>
+    <button onclick="history.back()" class="btn btn-secondary">
+      ← Go Back
+    </button>
+    <a href="/listing/addnew" class="btn  btn_category_page"> Want to Add  </a>
+  </div>
+  <% } %>
+</div>

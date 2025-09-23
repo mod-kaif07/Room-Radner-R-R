@@ -1,0 +1,8 @@
+#map {
+  width: 67%;              /* take full width of container */
+  height: 400px;            /* good visible height */
+  border-radius: 20px;      /* rounded corners */
+  overflow: hidden;         /* hide anything outside rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* soft shadow */
+  max-width: 1000px;        /* don’t stretch too wide on large screens */
+}

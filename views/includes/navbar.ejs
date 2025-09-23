@@ -1,28 +1,31 @@
-<nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
+<nav
+  class="navbar navbar-expand-md navbar-light bg-light sticky-top shadow-sm custom-navbar"
+>
   <div class="container-fluid">
     <!-- Brand / Logo -->
-   <a class="navbar-brand fw-bold" href="/">
-  <img src="/images/mainlogo.png" 
-       alt="Home icon" 
-       style="height: 60px;" 
-       class="logo-animate" />
-</a>
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+      <img
+        src="/images/mainlogo.png"
+        alt="Home icon"
+        class="logo-animate me-2"
+      />
+    </a>
 
-<style>
-  .logo-animate {
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-  }
-</style>
-
+    <!-- Search -->
+    <form
+      class="d-flex ms-5 flex-grow-1 searchBoxOuter"
+      action="/listing/filter-country"
+      method="Post"
+    >
+      <input
+        class="form-control form-control-sm searchBox"
+        type="search"
+        placeholder="Enter Country "
+        aria-label="Search"
+        name="country"
+      />
+      <button class="btn btn-dark btn-sm ms-2" type="submit">Search</button>
+    </form>
 
     <!-- Toggler for Mobile -->
     <button
@@ -39,38 +42,54 @@
 
     <!-- Navbar Items -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav ms-auto">
-        <!-- <a class="nav-link active" aria-current="page" href="/">Home</a> -->
-        <a class="nav-link" href="#">Search Rooms</a>
-        <a class="nav-link" href="#">Nearby Rooms</a>
-      <a class="nav-link d-flex flex-column align-items-center" href="/listing">
-         <img src="/images/roome.png" alt="add room" style="height: 35px" />
-         <span class="text-muted" style="font-size: 9px">Add Room</span>
-        <a class="nav-link d-flex flex-column align-items-center" href="/listing/addnew?">
-         <img src="/images/listing room.png" alt="Login" style="height: 35px" />
-         <span class="text-muted" style="font-size: 9px">Add Room</span>
-        <% if (!currentUser) { %>
-        <!-- Show when not logged in -->
-        <a class="nav-link d-flex flex-column align-items-center" href="/login">
-          <img src="/images/login.png" alt="Login" style="height: 30px" />
-           <span class="text-muted" style="font-size: 12px">Login</span>
-          
+      <div class="navbar-nav ms-auto align-items-center gap-4">
+        <!-- Links -->
 
+        <a class="nav-link d-flex flex-column align-items-center" href="#">
+          <img src="/images/neaby_room.png" alt="NearBy Room" class="nearby" />
+          <span class="nav-text">Rooms NearBy</span>
         </a>
-        <a class="nav-link d-flex flex-column align-items-center" href="/register">
-          <img src="/images/singi.png" alt="Sign Up" style="height: 30px" />
-          <span class="text-muted" style="font-size: 12px">Register</span>
+
+        <!-- Room Icons -->
+        <a
+          class="nav-link d-flex flex-column align-items-center"
+          href="/listing"
+        >
+          <img src="/images/roome.png" alt="Room" class="nav-icon" />
+          <span class="nav-text">Room</span>
+        </a>
+
+        <a
+          class="nav-link d-flex flex-column align-items-center"
+          href="/listing/addnew"
+        >
+          <img src="/images/listing room.png" alt="Add Room" class="nav-icon" />
+          <span class="nav-text">Add Room</span>
+        </a>
+
+        <% if (!currentUser) { %>
+        <!-- Not logged in -->
+        <a class="nav-link d-flex flex-column align-items-center" href="/login">
+          <img src="/images/login.png" alt="Login" class="nav-icon" />
+          <span class="nav-text">Login</span>
+        </a>
+
+        <a
+          class="nav-link d-flex flex-column align-items-center"
+          href="/register"
+        >
+          <img src="/images/singi.png" alt="Register" class="nav-icon" />
+          <span class="nav-text">Register</span>
         </a>
         <% } else { %>
-        <!-- Show when logged in -->
+        <!-- Logged in -->
         <a
           class="nav-link d-flex flex-column align-items-center"
           href="/logout"
         >
-          <img src="/images/logout_n.png" alt="Logout" style="height: 25px" />
-
-          <span class="text-muted" style="font-size: 12px">Logout</span>
-           <span class="text-muted" style="font-size: 7px"> <%= currentUser.username %></span>
+          <img src="/images/logout_n.png" alt="Logout" class="nav-icon" />
+          <span class="nav-text">Logout</span>
+          <span class="username"><%= currentUser.username %></span>
         </a>
         <% } %>
       </div>

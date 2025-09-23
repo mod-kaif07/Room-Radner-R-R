@@ -41,6 +41,9 @@ router
 //Add New listing
 router.get("/addnew", isLoggedIn, listingControllers.newForm);
 
+router.post("/filter-category", wrapAsync(listingControllers.filter));
+router.post("/filter-country", wrapAsync(listingControllers.filter_country ));
+
 //Combining the show-route & update-route and Delete-route  using router.route
 router
   .route("/:id")
@@ -54,8 +57,7 @@ router
   )
   .delete(isLoggedIn, isOwner, wrapAsync(listingControllers.deleteListing));
 
-// //Show Route
-// router.get("/:id", wrapAsync(listingControllers.showDetails));
+
 
 // edit Route
 router.get(
@@ -64,22 +66,5 @@ router.get(
   isOwner,
   wrapAsync(listingControllers.renderEditform)
 );
-
-//update Route
-// router.put(
-//   "/:id",
-//   isLoggedIn,
-//   isOwner,
-//   validateListing,
-//   wrapAsync(listingControllers.rendertUpdate)
-// );
-
-// //Delete route
-// router.delete(
-//   "/:id",
-//   isLoggedIn,
-//   isOwner,
-//   wrapAsync(listingControllers.deleteListing)
-// );
 
 module.exports = router;

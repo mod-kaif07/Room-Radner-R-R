@@ -1,0 +1,30 @@
+.show_img {
+  transition: transform 0.3s ease-in-out; /* smooth animation */
+}
+
+.show_img:hover {
+  transform: scale(1.05); /* 5% bigger */
+}
+
+
+.category_location_section {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between icon and text */
+}
+
+.category_location_icon {
+  color: #4b93ff; /* red map pin */
+  font-size: 1.2rem;
+}
+
+.category_country_section {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between icon and text */
+}
+
+.category_country_icon {
+  color: #7a8b9c; /* blue globe */
+  font-size: 1.2rem;
+}

@@ -1,5 +1,12 @@
 <% layout('/layouts/boilerplate') -%>
 <body>
+ <script>
+  window.mapData = {
+    token: "<%= process.env.MAP_API %>",
+    coordinates: <%- JSON.stringify(showdata?.location?.coordinates || [0, 0]) %>
+  };
+</script>
+
   <div style="margin-left: 25px">
     <h3>Details :</h3>
   </div>
@@ -18,10 +25,16 @@
       <p class="card-text">
         &#8377; <%= showdata.price.toLocaleString("en-IN") %>/Month
       </p>
-      <p class="card-text"><%= showdata.location %></p>
-      <p class="card-text">
-        <small class="text-body-secondary"><%= showdata.country %></small>
-      </p>
+       <div class="category_location_section">
+             <i class="fas fa-map-marker-alt category_location_icon"></i>
+              <span class="card-text"><%=showdata.address %></span>
+        </div>
+
+       <div class="category_country_section">
+           <i class="fas fa-globe-americas category_country_icon"></i>
+          <span class="card-text"><%= showdata.country %></span>
+         </div>
+
     </div>
   </div>
 
@@ -186,6 +199,7 @@
         <% } %>
       </div>
     </div>
+
     <div class=" offset-2" >
         <h3>We are Here </h3>
         <div id="map"></div>
@@ -193,7 +207,7 @@
 
           
   <div class="host-section mb-5 col-8 offset-2">
-    <hr>
+  <hr>
   <h3 class="mb-4">Meet your host</h3>
   <div class="card">
     <div class="card-body">
@@ -357,39 +371,7 @@
     </div>
   </div>
 </div>
-
-
-
-  <!-- here is code of the vladiation of bootsrap -->
 </body>
-
-<script>
- let mapToken = "<%=process.env.MAP_API%>";
-  mapboxgl.accessToken = mapToken;
-   const map = new mapboxgl.Map({
-    container: 'map', // container ID
-    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-    style: 'mapbox://styles/mapbox/streets-v12', // style URL
-    center: [-74.5, 40], // starting position [lng, lat]
-    zoom: 9 // starting zoom
-});
-</script>
-<script>
-  function showMessageModal() {
-    var messageModal = new bootstrap.Modal(document.getElementById('messageHostModal'));
-    messageModal.show();
-  }
-
-  function sendMessage() {
-    const form = document.querySelector('#messageHostModal form');
-    const messageText = document.getElementById('messageText').value.trim();
     
-    if (messageText) {
-      form.submit();
-    } else {
-      alert('Please enter a message before sending.');
-    }
-  }
-</script>
-    <!-- End Host Section -->
 </div>
+<script src="/js/map.js"></script>
