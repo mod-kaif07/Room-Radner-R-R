@@ -305,7 +305,7 @@ This project is configured for easy deployment on Render platform.
 
 #### Live Demo
 
-🌐 **Live Application**: [https://room-render-app.onrender.com](https://room-render-app.onrender.com)
+🌐 **Live Application**: https://room-radner-r-r.onrender.com
 
 > **Note**: Free tier on Render may have cold starts (initial loading delay). The application will wake up automatically when accessed.
 
