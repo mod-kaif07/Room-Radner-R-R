@@ -1,161 +1,156 @@
+/* =============== GLOBAL NAVBAR WRAPPER ================== */
 .custom-navbar {
-  /* Base styling */
-  background-color: #ffffff;
-  border-radius: 20px;
-  margin-top: 5px;
-
-  /* Enhanced borders and shadows */
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 0.6rem 1.2rem;
+  margin: 10px 20px;
   border: 1px solid #e5e7eb;
-  border-bottom: 2px solid #d1d5db;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-  /* Smooth transitions */
-  transition: all 0.3s ease;
-
-  /* Typography */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-
-  /* Layout improvements */
-  padding: 0.75rem 1.5rem;
-  position: relative;
-  z-index: 100;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease-in-out;
+  position: sticky;
+  top: 10px;
+  z-index: 999;
 }
 
-/* Hover effects */
+/* On scroll / hover subtle lift */
 .custom-navbar:hover {
-  box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transform: translateY(-1px);
-  border-bottom-color: #9ca3af;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* Active/focused state */
-.custom-navbar:focus-within {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+/* =============== LOGO =============== */
+.logo-animate {
+  height: 55px;
+  width: auto;
+  transition: transform 0.25s ease;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .custom-navbar {
-    border-radius: 15px;
-    margin: 5px 10px;
-    padding: 0.5rem 1rem;
-  }
+.logo-animate:hover {
+  transform: scale(1.05);
 }
 
-/* Optional: Glass effect variant */
-.custom-navbar.glass-effect {
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+/* =============== SEARCH BAR =============== */
+.searchBoxOuter {
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Optional: Minimal variant */
-.custom-navbar.minimal {
-  border: none;
-  border-bottom: 1px solid #f3f4f6;
-  border-radius: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.searchBox {
+  border-radius: 25px;
+  padding-left: 14px;
+  border: 1px solid #d1d5db;
+  transition: all 0.25s ease;
 }
 
-/* Navbar content styling */
-.custom-navbar .navbar-brand {
-  color: #1f2937;
-  font-weight: 600;
-  text-decoration: none;
+.searchBox:focus {
+  outline: none;
+  border-color: #111;
+  box-shadow: 0 0 0 2px rgba(17,17,17,0.15);
 }
 
-.custom-navbar .nav-link {
-  color: #4b5563;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.custom-navbar .nav-link:hover {
-  color: #1f2937;
-  background-color: #f9fafb;
-}
-
-.custom-navbar .nav-link.active {
-  color: #3b82f6;
-  background-color: #eff6ff;
-}
-
-.brand-text {
-  font-size: 1.2rem;
-  color: #111;
-}
-
+/* =============== NAV LINKS (text + icons) =============== */
 .nav-link {
-  color: #222 !important;
-  transition: color 0.2s ease-in-out;
+  color: #1e1e1e !important;
+  text-align: center;
+  padding: 0.3rem 0.6rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
 .nav-link:hover {
+  background: #f3f4f6;
   color: #000 !important;
+  transform: translateY(-2px);
 }
 
-.nav-icon {
+/* Active link styling */
+.nav-link.active {
+  background: #111;
+  color: #fff !important;
+  border-radius: 12px;
+}
+
+/* =============== ICONS =============== */
+.nav-icon, .nearby {
   height: 33px;
-  width: 35px;
-  margin-bottom: 2px;
-  transition: all 0.3s ease-in-out;
-  transition: filter 0.2s;
+  width: 33px;
+  margin-bottom: 4px;
+  transition: all 0.25s ease;
+  filter: grayscale(30%);
 }
 
-.nav-link:hover .nav-icon {
-  filter: grayscale(0%) brightness(1);
-  height: 35px;
-  width: 37px;
-  transition: all 0.3s ease-in-out;
+.nav-link:hover .nav-icon,
+.nav-link:hover .nearby {
+  transform: scale(1.12);
+  filter: grayscale(0%);
 }
 
-.nav-text {
-  font-size: 0.75rem;
-  color: #666;
-}
-
-.username {
-  font-size: 0.4rem;
-  color: #888;
-}
-
-/* Logo Animation */
-.logo-animate {
-  height: 55px;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-.searchBoxOuter {
-  margin-left: 30%;
-}
-.searchBox {
-  border-radius: 30px;
-}
-
+/* Nearby logo circle style */
 .nearby {
-  height: 50px;
-  width: 50px;
-  background-color: white;
+  background: #fff;
   border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
 }
-.nearby:hover {
-  width: 58px;
-  height: 53px;
-  transition: all 0.3s ease-in-out;
+
+/* =============== USERNAME =============== */
+.username {
+  font-size: 0.65rem;
+  color: #696969;
+  margin-top: -3px;
+}
+
+/* =============== MOBILE RESPONSIVE =============== */
+@media (max-width: 768px) {
+  .custom-navbar {
+    border-radius: 0;
+    margin: 0;
+    padding: 0.8rem 1rem;
+  }
+
+  .searchBoxOuter {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .nav-link {
+    padding: 0.6rem 0.2rem;
+  }
+}
+
+/* =============== OPTIONAL DARK MODE =============== */
+.dark-theme .custom-navbar {
+  background: #111;
+  border: 1px solid #222;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.dark-theme .nav-link {
+  color: #f3f3f3 !important;
+}
+
+.dark-theme .nav-link:hover {
+  background: #222;
+  color: #fff !important;
+}
+
+.dark-theme .searchBox {
+  background: #222;
+  color: white;
+  border: 1px solid #333;
+}
+
+.dark-theme .searchBox:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
+}
+
+.dark-theme .nav-icon {
+  filter: brightness(0.85);
+}
+
+.dark-theme .logo-animate {
+  filter: brightness(0.85);
 }

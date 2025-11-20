@@ -86,6 +86,20 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   res.render("listings/home");
 });
+app.get("/privacy", (req, res) => {
+  res.render("footerdetails/privacy");
+});
+app.get("/terms", (req, res) => {
+  res.render("footerdetails/terms");
+});
+
+app.get("/guidline", (req, res) => {
+  res.render("footerdetails/community");
+});
+
+
+
+
 
 //listing route and review route
 app.use("/listing", listingRoutes);
