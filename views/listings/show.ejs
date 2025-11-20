@@ -39,7 +39,7 @@
   </div>
 
   <!-- ✅ Buttons only visible if currentUser is owner -->
-    <%    if(currentUser && showdata.owner._id.equals(currentUser._id)){%>
+    <%    if(currentUser  && showdata.owner  && showdata.owner._id.equals(currentUser._id)){%>
     <div class="d-flex gap-5 mb-5">
       <!-- Edit Button -->
       <form action="/listing/<%= showdata._id %>/edit" method="get">

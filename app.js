@@ -22,12 +22,12 @@ const reviewRoutes = require("./routes/review.js");
 const userRoutes = require("./routes/user.js");
 
 const dbUrl = process.env.ATLAS_URL;
-const mongoUrl = "mongodb://127.0.0.1:27017/airbnb";
+const mongoUrl = "mongodb://127.0.0.1:27017/roomrander";
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   crypto: {
-    secret:process.env.SECRET,
+    secret: process.env.SECRET,
   },
   touchAfter: 24 * 3600, // 24 hours
 });
@@ -35,21 +35,29 @@ store.on("error", () => {
   console.log("ERROR in MONGO SESSION STORE", err);
 });
 let sessionOption = {
-  secret: process.env.SECRET,
+  store,
+  secret: process.env.SECRET || "somesecret",
   resave: false,
   saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 1 week
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  },
 };
 
 let port = 8080;
 
-main()
-  .then(() => {
-    console.log("Connected to DataBase sucessfully");
-  })
-  .catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(dbUrl);
+  try {
+    await mongoose.connect(dbUrl);   // <-- Using ATLAS here
+    console.log("✅ Connected to MongoDB Atlas successfully");
+  } catch (err) {
+    console.error("❌ MongoDB Connection Error:", err);
+  }
 }
+main();
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
