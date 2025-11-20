@@ -4,6 +4,7 @@
   <div class="card shadow-sm rounded-3">
     <div class="card-body p-5">
       <h2 class="text-center mb-4">Edit Your Listing</h2>
+
       <form
         action="/listing/<%= editable_data._id %>?_method=PUT"
         method="POST"
@@ -23,7 +24,6 @@
             required
           />
           <div class="invalid-feedback">Valid Title</div>
-          <div class="valid-feedback">Looks good!</div>
         </div>
 
         <!-- Description -->
@@ -36,17 +36,13 @@
             rows="3"
             required
             minlength="50"
-          >
-<%= editable_data.description %></textarea
-          >
+          ><%= editable_data.description %></textarea>
           <div class="invalid-feedback">
             Description must be at least 50 characters long.
           </div>
-          <div class="valid-feedback">
-            Looks good — users will understand your listing better
-          </div>
         </div>
 
+        <!-- Old Image Preview -->
         <div style="margin: 0; padding: 20px; background: #f8f9fa">
           <small for="img">Last Uploaded image</small>
           <div
@@ -64,17 +60,12 @@
             <img
               src="<%=orginialimage%>"
               alt="Room Image"
-              style="
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-                bject-fit: contain;
-              "
+              style="width: 100%; height: 100%; object-fit: cover;"
             />
           </div>
         </div>
-        <!-- Image Link -->
+
+        <!-- Upload New Image -->
         <div class="mb-0">
           <label for="image" class="form-label">Upload New Image</label>
           <input
@@ -82,15 +73,10 @@
             class="form-control"
             id="image"
             name="listing[image]"
-            value="<%= editable_data.image.url %>"
           />
-          <div class="invalid-feedback">
-            Please provide a valid image URL (must start with http/https)
-          </div>
-          <div class="valid-feedback">Nice! Your image URL is valid.</div>
         </div>
 
-        <!-- Price & Country in same row -->
+        <!-- Price, Country & Phone Number -->
         <div class="row g-3 mb-0">
           <div class="col-12 col-md-4">
             <label for="price" class="form-label">Price</label>
@@ -102,11 +88,9 @@
               value="<%= editable_data.price %>"
               required
             />
-            <div class="invalid-feedback">Price must be a positive number.</div>
-            <div class="valid-feedback">Great! Price looks valid.</div>
           </div>
 
-          <div class="col-12 col-md-8">
+          <div class="col-12 col-md-4">
             <label for="country" class="form-label">Country</label>
             <input
               type="text"
@@ -116,8 +100,22 @@
               value="<%= editable_data.country %>"
               required
             />
-            <div class="invalid-feedback">Country field cannot be empty</div>
-            <div class="valid-feedback">Good! Country has been selected</div>
+          </div>
+
+          <!-- ⭐ Added Phone Number -->
+          <div class="col-12 col-md-4">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="phoneNumber"
+              name="listing[phoneNumber]"
+              value="<%= editable_data.phoneNumber %>"
+              required
+              minlength="10"
+              maxlength="15"
+            />
+            <div class="invalid-feedback">Please enter a valid phone number</div>
           </div>
         </div>
 
@@ -132,15 +130,9 @@
             value="<%= editable_data.address %>"
             required
           />
-          <div class="invalid-feedback">
-            Please enter the location of your listing
-          </div>
-          <div class="valid-feedback">
-            Perfect — users can now find your listing easily.
-          </div>
         </div>
 
-        <!-- //categoy edits -->
+        <!-- SubCategory -->
         <div class="mb-3">
           <label for="subCategory" class="form-label">Room Category</label>
           <select
@@ -153,7 +145,6 @@
               Your Previous Category: <%= editable_data.subCategory %>
             </option>
 
-            <!-- Student Categories -->
             <optgroup label="Student Categories">
               <option value="Shared Room">Shared Room</option>
               <option value="Single Room">Single Room</option>
@@ -162,7 +153,6 @@
               <option value="PG">PG (Paying Guest)</option>
             </optgroup>
 
-            <!-- Working Professional Categories -->
             <optgroup label="Working Professional Categories">
               <option value="Private Single Room">Private Single Room</option>
               <option value="Co-living Room">Co-living Room</option>
@@ -171,17 +161,15 @@
               <option value="Service Apartment">Service Apartment</option>
             </optgroup>
 
-            <!-- Universal Categories -->
             <optgroup label="Universal Categories">
               <option value="Budget Room">Budget Room</option>
               <option value="Standard Room">Standard Room</option>
               <option value="Premium Room">Premium Room</option>
             </optgroup>
           </select>
-          <div class="invalid-feedback">Please select a room category</div>
         </div>
 
-        <!-- Submit -->
+        <!-- Submit Button -->
         <button type="submit" class="btn btn-dark w-100">Update</button>
       </form>
     </div>

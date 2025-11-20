@@ -55,9 +55,9 @@
       </div>
     </div>
 
-    <!-- Price & Country (same row) -->
+    <!-- Price & Country -->
     <div class="row">
-      <div class="col-md-6 mb-3">
+      <div class="col-md-4 mb-3">
         <label for="price" class="form-label">Price</label>
         <input
           type="number"
@@ -69,7 +69,8 @@
         />
         <div class="invalid-feedback">Price Should be valid</div>
       </div>
-      <div class="col-md-6 mb-3">
+
+      <div class="col-md-4 mb-3">
         <label for="country" class="form-label">Country</label>
         <input
           type="String"
@@ -80,10 +81,25 @@
           required
         />
       </div>
-      <div class="invalid-feedback">Valid Country name</div>
+
+      <!-- ⭐ Phone Number Field -->
+      <div class="col-md-4 mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="phoneNumber"
+          name="listing[phoneNumber]"
+          placeholder="Enter phone number"
+          required
+          minlength="10"
+          maxlength="15"
+        />
+        <div class="invalid-feedback">Please enter a valid phone number</div>
+      </div>
     </div>
 
-    <!-- Location -->
+    <!-- Address -->
     <div class="mb-3">
       <label for="location" class="form-label">Location</label>
       <input
@@ -97,7 +113,7 @@
       <div class="invalid-feedback">Make sure Location is Valid</div>
     </div>
 
-    <!-- Add SubCategory -->
+    <!-- SubCategory -->
     <div class="mb-3">
       <label for="subCategory" class="form-label">Room Category</label>
       <select
@@ -140,7 +156,6 @@
     <div class="d-grid gap-2 col-6 mx-auto">
       <button class="btn btn-primary" type="submit">Add</button>
     </div>
-    <!-- <button type="" class="bbtn btn-primary btn-sm">Add</button> -->
   </form>
 </div>
 

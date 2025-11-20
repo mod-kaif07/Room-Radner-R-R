@@ -50,14 +50,13 @@ let port = 8080;
 
 async function main() {
   try {
-    await mongoose.connect(dbUrl);   // <-- Using ATLAS here
+    await mongoose.connect(dbUrl); // <-- Using ATLAS here
     console.log("✅ Connected to MongoDB Atlas successfully");
   } catch (err) {
     console.error("❌ MongoDB Connection Error:", err);
   }
 }
 main();
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
